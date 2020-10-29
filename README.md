@@ -6,7 +6,7 @@
 3. [2020.10.28：html5的新特性](https://github.com/tkiddo/front-end-interview/issues/3)
 
 ## JavaScript
-1. [2020.10.27：堆栈内存练习题]()
+1. [2020.10.29：JS数据类型](https://github.com/tkiddo/front-end-interview/issues/6)
 ## React
 
 ## web相关
