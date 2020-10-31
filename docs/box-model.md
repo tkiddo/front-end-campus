@@ -1,0 +1,75 @@
+盒子模型是 CSS 中最基础也是最重要的一部分，在实际开发中，如果不理解盒模型，在布局中往往会遇到难以捉摸的现象。对于前端的一些概念性的东西，我往往会上[MDN](https://developer.mozilla.org/zh-CN/)上查看，那里会给到非常专业的解释。
+
+首先，提到盒模型，我们往往最先想到的**标准盒模型**和**怪异盒模型**（也叫**IE 盒模型**）。其实，更广义地说，还包括**flex 弹性盒子模型**。
+
+### 标准盒子模型
+
+在标准盒子模型中（`box-sizing`默认为`content-box`）,每个盒子由四个部分组成：
+
+1. content area：内容区域
+
+2. padding area：内边距区域，由`padding`属性设置
+
+3. border area：边框区域，由`border`属性设置
+
+4. margin area：外边距区域，由`margin`属性设置
+
+在标准盒模型中，盒子的宽高指的就是内容区域的宽高。标准盒模型有一个缺点，就是当添加 padding 或者 border 时，需要实时计算内容的宽度，以保证盒子不会影响到其他元素，我感觉这样有点违反正常的认知，实际项目开发过程中会比较麻烦。所以我在实际开发中多使用怪异盒模型。
+
+### 怪异盒子模型（IE 盒子模型）
+
+怪异盒子模型（`box-sizing`为`border-box`）和标准盒子模型不同的是，盒子宽高的计算是以边框为基准，即 content+padding+border。这样的盒子在实际的开发中使用会更加方便，省去很多不必要的计算。
+
+### flex 弹性盒子
+
+flex 弹性伸缩盒子是现在比较流行的布局方式，这种布局方式的理念是让容器有能力去调节其内部元素的宽高和顺序来充分利用容器内可利用的空间，在响应式布局中也有应用。具体用法我都是看阮一峰的博客[Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+---
+
+## 计算题
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box-1 {
+        width: 200px;
+        height: 200px;
+        background-color: darkcyan;
+        border: 4px solid darkorange;
+        padding: 10px;
+        margin: 20px;
+      }
+      .box-2 {
+        width: 100px;
+        height: 100px;
+        background-color: lightcoral;
+        border: 4px solid lightcyan;
+        padding: 10px;
+        margin: 40px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box-1">content</div>
+      <div class="box-2">content</div>
+    </div>
+  </body>
+</html>
+```
+
+请计算 container 的高度。
+解答：
+
+1. box-1 是标准盒子模型（`box-sizing`默认为`content-box`），盒子的高度指的是内容的高度 200px，外加边框的高度 4px*2=8px,再加内边距的高度 10px*2=20px,即总共 228px
+2. box-2 是怪异盒子模型（`box-sizing`为`border-box`），盒子的高度指的是 content+padding+border，即 100px;
+3. box-1 和 box-2 中间的 margin,两者比较取较大者（BFC），为 40px
+4. 228+100+40=368px
+
+> 注意：父元素的第一个子元素的上边距 margin-top 如果碰不到有效的 border 或者 padding，就会连同父元素一起下移；下边距需要有效的 border 或者 padding 做参照。
