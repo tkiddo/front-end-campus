@@ -21,3 +21,7 @@
 ### 2020.10.29
 
 - [html5 新特性](https://github.com/tkiddo/front-end-interview/blob/main/docs/html5-new.md)
+
+### 2020.11.1
+
+- [作用域](https://github.com/tkiddo/front-end-interview/blob/main/docs/scope.md)
