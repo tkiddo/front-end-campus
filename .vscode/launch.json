@@ -8,8 +8,9 @@
 			"type": "chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
-			"url": "http://localhost:8080/temp/closure/index.html",
-			"webRoot": "${workspaceFolder}"
+			"url": "http://localhost:8080",
+			"webRoot": "${workspaceFolder}",
+			"file": "${workspaceFolder}/temp/closure/index.html"
 		}
 	]
 }
