@@ -1,6 +1,6 @@
-# 作用域链
+# 从执行上下文理解作用域链
 
-翻译自[ECMA-262-3 in detail. Chapter 4. Scope chain.](http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/#:~:text=Scope%20chain%20is%20related%20with%20an%20execution%20context,the%20internal%20%5B%20%5BScope%5D%5D%20property%20of%20this%20function.)
+参考自[ECMA-262-3 in detail. Chapter 4. Scope chain.](http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/#:~:text=Scope%20chain%20is%20related%20with%20an%20execution%20context,the%20internal%20%5B%20%5BScope%5D%5D%20property%20of%20this%20function.)
 
 ## 定义
 
@@ -108,7 +108,7 @@ fooContext.AO = {
 
 注意要点-`[[Scope]]`在函数创建时保存-永久不变-直到函数销毁。即使永远不能调用函数，但是`[[Scope]]`属性已经编写并存储在函数对象中。
 
-与作用域相反，`[[Scope]]`是函数的属性而不是上下文。考虑以上示例，“ foo”函数的`[[Scope]]`为：
+与作用域相反，`[[Scope]]`是函数的属性而不是上下文的属性。考虑以上示例，“ foo”函数的`[[Scope]]`为：
 
 ```js
 foo[[Scope]] = [
@@ -126,4 +126,105 @@ foo[[Scope]] = [
 Scope = AO | VO + [[Scope]];
 ```
 
-这里的重点是活动对象是 Scope 数组的第一个元素，即添加到作用域链的前面
+这里的重点是**活动对象是 Scope 数组的第一个元素，即添加到作用域链的前面**：
+
+```js
+Scope = [AO].concat([[Scope]]);
+```
+
+这对于标识符的解析过程非常重要。
+
+> 标识符解析是确定变量（或函数声明）属于作用域链中哪个变量对象的过程。
+
+标识符解析的过程包括查找与变量名称相对应的属性，即从最深的上下文开始直到作用域链的顶部，对作用域链中的变量对象进行连续检查。
+
+因此，查找时子上下文的局部变量比父上下文的变量具有更高的优先级，并且在两个具有相同名称但来自不同上下文的变量的情况下，第一个被发现是较深上下文的变量。
+
+举个例子：
+
+```js
+var x = 10;
+
+function foo() {
+  var y = 20;
+
+  function bar() {
+    var z = 30;
+    alert(x + y + z);
+  }
+
+  bar();
+}
+
+foo(); // 60
+```
+
+我们来分析这段代码中的变量对象，活动对象以及作用域链和函数的`[[Scope]]`属性：
+
+首先是全局上下文，其变量对象是：
+
+```js
+globalContext.VO===global={
+	x:10,
+	foo:<reference to function>
+}
+```
+
+然后在创建函数 foo 时，其`[[Scope]]`属性也创建了，是：
+
+```js
+foo[[Scope]] = [globalContext.VO];
+```
+
+当函数 foo 执行时，foo 上下文的活动对象是：
+
+```js
+fooContext.AO={
+	y:20,
+	bar:<reference to function>
+}
+```
+
+所以 foo 函数上下文的作用域链是：
+
+```js
+fooContext.scope = fooContext.AO + foo[[Scope]];
+fooContext.scope = [fooContext.AO, globalContext.VO];
+```
+
+然后当 bar 函数创建时，其`[[Scope]]`属性也创建，是：
+
+```js
+bar[[Scope]] = [fooContext.AO, globalContext.VO];
+```
+
+当 bar 函数调用时，bar 上下文的活动对象创建：
+
+```js
+barContext.AO = {
+  z: 30
+};
+```
+
+bar 函数上下文的作用域链是：
+
+```js
+barContext.scope = barContext.AO + bar[[Scope]];
+barContext.scope = [barContext.AO, fooContext.AO, globalContext.VO];
+```
+
+标识符解析的过程是这样的：
+
+```
+x:
+barContext.AO----没找到
+fooContext.AO----没找到
+globalContext.VO----找到了，是10
+
+y:
+barContext.AO----没找到
+fooContext.AO----找到了，是20
+
+z：
+barContext.AO----找到了，是30
+```
