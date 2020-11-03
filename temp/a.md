@@ -4,6 +4,7 @@ parseUrl("http://www.xiyanghui.com/product/list?id=123456&sort=discount#title");
 
 期望结果：
 
+```js
 {
 protocol: "http",
 host: "www.xiyanghui.com",
@@ -14,6 +15,7 @@ sort: "discount"
 },
 hash: "title"
 }
+```
 
 2 关系型数组转换成树形结构对象
 
@@ -54,9 +56,12 @@ AllPlayer(pepole)构造函数，参数为字符串数组构成的所有参赛选
 get(name)查询指定名字在参赛选手中出现的频率
 add(name)使这个选手表单能够添加人员
 示例：
-Player=new AllPlayer(['张三','李四','王五','赵六','Tom','Jack','Jerry'])
 
-    Player.get('王二麻子') // 返回 0 王二麻子没有出现过
-    Player.get('张三') // 返回 1 张三出现过1次
-    Player.add(['张三','张三丰'])
-    Player.get('张三') // 返回 2 张三出现过2次
+```js
+Player = new AllPlayer(['张三', '李四', '王五', '赵六', 'Tom', 'Jack', 'Jerry']);
+
+Player.get('王二麻子'); // 返回 0 王二麻子没有出现过
+Player.get('张三'); // 返回 1 张三出现过1次
+Player.add(['张三', '张三丰']);
+Player.get('张三'); // 返回 2 张三出现过2次
+```

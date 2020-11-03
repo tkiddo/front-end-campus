@@ -68,9 +68,7 @@
     };
 
     AllPlayer.prototype.get = function (name) {
-      const len = this.list.filter((item) => item === name).length;
-      console.log(len);
-      return len;
+      return this.list.filter((item) => item === name).length;
     };
 
     const Player = new AllPlayer(['张三', '李四', '王五', '赵六', 'Tom', 'Jack', 'Jerry']);
