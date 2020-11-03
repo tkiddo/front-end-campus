@@ -25,3 +25,7 @@
 ### 2020.11.1
 
 - [作用域](https://github.com/tkiddo/front-end-interview/blob/main/docs/scope.md)
+
+### 2020.11.3
+
+- [从执行上下文理解作用域链](https://github.com/tkiddo/front-end-interview/blob/main/docs/scope-chain.md)
