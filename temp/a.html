@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function parseUrl(url) {
+      const _url = new URL(url);
+      const { protocol, host, hash, search, pathname } = _url;
+      const searchArr = search.replace(/^\?/, '').split('&');
+      const params = {};
+      searchArr.forEach((item) => {
+        const temp = item.split('=');
+        params[temp[0]] = temp[1];
+      });
+      return {
+        protocol: protocol.replace(/:/, ''),
+        host,
+        hash: hash.replace(/#/, ''),
+        path: pathname,
+        params
+      };
+    }
+    const url = 'http://www.xiyanghui.com/product/list?id=123456&sort=discount#title';
+    const result = parseUrl(url);
+    console.log(result);
+
+    function toTree(arr) {
+      let root = {};
+      let current = root;
+      while (arr.length > 0) {
+        if (!root.id) {
+          const idx = arr.findIndex((item) => item.parent === null);
+          root = arr.splice(idx, 1)[0];
+          current = root;
+        } else {
+          const idx = arr.findIndex((item) => item.parent === current.id);
+          if (idx >= 0) {
+            current.child = arr.splice(idx, 1)[0];
+            current = current.child;
+          } else {
+            current.child = null;
+          }
+        }
+      }
+      return root;
+    }
+    const obj = [
+      { id: 3, parent: 2 },
+      { id: 1, parent: null },
+      { id: 2, parent: 1 }
+    ];
+    console.log(toTree(obj));
+
+    function AllPlayer(list) {
+      this.list = list;
+    }
+
+    AllPlayer.prototype.add = function (item) {
+      if (Array.isArray(item)) {
+        this.list.push(...item);
+      } else {
+        this.list.push(item);
+      }
+    };
+
+    AllPlayer.prototype.get = function (name) {
+      const len = this.list.filter((item) => item === name).length;
+      console.log(len);
+      return len;
+    };
+
+    const Player = new AllPlayer(['张三', '李四', '王五', '赵六', 'Tom', 'Jack', 'Jerry']);
+
+    Player.get('王二麻子'); // 返回 0 王二麻子没有出现过
+    Player.get('张三'); // 返回 1 张三出现过1次
+    Player.add(['张三', '张三丰']);
+    Player.get('张三'); // 返回 2 张三出现过2次
+  </script>
+</html>
