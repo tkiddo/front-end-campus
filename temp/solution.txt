@@ -1,0 +1,125 @@
+1 请用 javascript 实现一个函数 parseUrl(url)，将一段 url 字符串解析为 Object
+
+parseUrl("http://www.xiyanghui.com/product/list?id=123456&sort=discount#title");
+
+期望结果：
+
+
+{
+protocol: "http",
+host: "www.xiyanghui.com",
+path: "/product/list",
+params: {
+id: "12345",
+sort: "discount"
+},
+hash: "title"
+}
+
+解答：
+
+function parseUrl(url) {
+	const _url = new URL(url);
+	const { protocol, host, hash, search, pathname } = _url;
+	const searchArr = search.replace(/^\?/, '').split('&');
+	const params = {};
+	searchArr.forEach((item) => {
+		const temp = item.split('=');
+		params[temp[0]] = temp[1];
+	});
+	return {
+		protocol: protocol.replace(/:/, ''),
+		host,
+		hash: hash.replace(/#/, ''),
+		path: pathname,
+		params
+	};
+}
+
+
+2 关系型数组转换成树形结构对象
+
+关系型数组
+
+var obj = [
+  { id: 3, parent: 2 },
+  { id: 1, parent: null },
+  { id: 2, parent: 1 }
+];
+
+期望结果：
+
+o = {
+	obj: {
+		id: 1,
+		parent: null,
+		child: {
+			id: 2,
+			parent: 1,
+			child: {
+				id: ,3,
+				parent: 2
+			}
+		}
+	}
+}
+
+解答：
+
+    function toTree(arr) {
+      let root = {};
+      let current = root;
+      while (arr.length > 0) {
+        if (!root.id) {
+          const idx = arr.findIndex((item) => item.parent === null);
+          root = arr.splice(idx, 1)[0];
+          current = root;
+        } else {
+          const idx = arr.findIndex((item) => item.parent === current.id);
+          if (idx >= 0) {
+            current.child = arr.splice(idx, 1)[0];
+            current = current.child;
+          } else {
+            current.child = null;
+          }
+        }
+      }
+      return { obj: root };
+    }
+
+
+3 写一个函数来实现如下要求
+
+一、设计一个方法找出同名参赛选手
+你的实现应该支持如下操作：
+AllPlayer(pepole)构造函数，参数为字符串数组构成的所有参赛选手名单
+get(name)查询指定名字在参赛选手中出现的频率
+add(name)使这个选手表单能够添加人员
+示例：
+
+
+Player = new AllPlayer(['张三', '李四', '王五', '赵六', 'Tom', 'Jack', 'Jerry']);
+
+Player.get('王二麻子'); // 返回 0 王二麻子没有出现过
+Player.get('张三'); // 返回 1 张三出现过1次
+Player.add(['张三', '张三丰']);
+Player.get('张三'); // 返回 2 张三出现过2次
+
+
+解答：
+
+    function AllPlayer(list) {
+      this.list = list;
+    }
+
+    AllPlayer.prototype.add = function (item) {
+      if (Array.isArray(item)) {
+        this.list.push(...item);
+      } else {
+        this.list.push(item);
+      }
+    };
+
+    AllPlayer.prototype.get = function (name) {
+      return this.list.filter((item) => item === name).length;
+    };
