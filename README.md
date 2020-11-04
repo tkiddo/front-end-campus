@@ -22,10 +22,14 @@
 
 - [html5 新特性](https://github.com/tkiddo/front-end-interview/blob/main/docs/html5-new.md)
 
-### 2020.11.1
+### 2020.11.01
 
 - [作用域](https://github.com/tkiddo/front-end-interview/blob/main/docs/scope.md)
 
-### 2020.11.3
+### 2020.11.03
 
 - [从执行上下文理解作用域链](https://github.com/tkiddo/front-end-interview/blob/main/docs/scope-chain.md)
+
+### 2020.11.04
+
+- [理解原型和继承](https://github.com/tkiddo/front-end-interview/blob/main/docs/prototype-inheritance.md)
