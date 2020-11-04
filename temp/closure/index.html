@@ -5,25 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+    </div>
+  </body>
   <script>
-    // function foo(a) {
-    //   var b = a;
-    //   function bar(c) {
-    //     console.log(a, b, c);
-    //   }
-    //   bar(2);
-    // }
-    // foo(3);
-
-    debugger;
-    var x = 10;
-
-    function foo() {
-      var y = 20;
-      alert(x + y);
+    function fun(n, o) {
+      console.log(o);
+      return {
+        fun: function (m) {
+          return fun(m, n);
+        }
+      };
     }
 
-    foo();
+    var a = fun(0); // ? undefined
+    a.fun(1); // ? 0
+    a.fun(2); // ? 0
+    a.fun(3); // ? 0
+    var b = fun(0).fun(1).fun(2).fun(3); // ? undefined 0 1 2
+    var c = fun(0).fun(1); // ?undefined 0
+    c.fun(2); // ? 1
+    c.fun(3); // ? 1
   </script>
 </html>
