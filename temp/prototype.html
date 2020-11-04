@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function Hero(name, level) {
+      this.name = name;
+      this.level = level;
+    }
+
+    Hero.prototype.greet = function () {
+      return `${this.name} says hello.`;
+    };
+
+    function Warrior(name, level, weapon) {
+      // Chain constructor with call
+      Hero.call(this, name, level);
+
+      // Add a new property
+      this.weapon = weapon;
+    }
+
+    // Initialize Healer constructor
+    function Healer(name, level, spell) {
+      Hero.call(this, name, level);
+
+      this.spell = spell;
+    }
+
+    Warrior.prototype = Object.create(Hero.prototype);
+    Healer.prototype = Object.create(Hero.prototype);
+
+    Warrior.prototype.attack = function () {
+      return `${this.name} attacks with the ${this.weapon}.`;
+    };
+
+    Healer.prototype.heal = function () {
+      return `${this.name} casts ${this.spell}.`;
+    };
+
+    const hero1 = new Warrior('Bjorn', 1, 'axe');
+    const hero2 = new Healer('Kanin', 1, 'cure');
+
+    console.log(hero1.attack());
+
+    hero1.greet();
+
+    function HaHa(name, level, spell, age) {
+      Healer.call(this, name, level, spell);
+      this.age = age;
+    }
+    HaHa.prototype = Object.create(Healer.prototype);
+
+    const hero3 = new HaHa('asd', 3, 'sas', 4);
+    console.log(hero3);
+    console.log(hero3.heal());
+    console.log(hero3.greet());
+  </script>
+</html>
