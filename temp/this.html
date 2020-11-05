@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    Function.prototype.myCall = function (obj) {
+      if (typeof this !== 'function') {
+        throw new Error('not a function');
+      }
+
+      obj = obj || window;
+
+      const fn = this;
+      const args = [...arguments].slice(1);
+      obj.fn = fn;
+      const result = obj.fn(...args);
+      delete obj.fn;
+      return result;
+    };
+
+    function foo(a, b) {
+      console.log(this.name + a + b);
+    }
+
+    const obj = { name: 'ad' };
+    foo.call(obj, 3, 2);
+
+    Function.prototype.myApply = function (obj) {
+      if (typeof this !== 'function') {
+        throw new Error('not a function');
+      }
+
+      obj = obj || window;
+
+      const fn = this;
+      let result;
+      obj.fn = fn;
+      if (arguments[1]) {
+        result = obj.fn(...arguments[1]);
+      } else {
+        result = obj.fn();
+      }
+      delete obj.fn;
+      return result;
+    };
+
+    foo.myApply(obj, [3, 2]);
+
+    Function.prototype.myBind = function (obj) {
+      if (typeof this !== 'function') {
+        throw new Error('not a function');
+      }
+
+      obj = obj || window;
+      obj.fn = this;
+      const args = [...arguments].slice(1);
+      return function () {
+        obj.fn(...args, ...arguments);
+      };
+    };
+
+    const f = foo.myBind(obj);
+    f(3, 2);
+  </script>
+</html>
