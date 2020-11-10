@@ -7,6 +7,20 @@
   </head>
   <body></body>
   <script>
+    function hi(params) {
+      console.log(this.name + params);
+    }
+
+    const obj = { name: 'john' };
+    hi.call({ name: 'john' }, '123');
+
+    Function.prototype.myCall = function (obj, args) {
+      obj.fn = this;
+      obj.fn(args);
+      delete obj.fn;
+    };
+
+    hi.myCall(obj, '123');
     Function.prototype.myCall = function (obj) {
       if (typeof this !== 'function') {
         throw new Error('not a function');
