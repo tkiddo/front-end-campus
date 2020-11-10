@@ -33,3 +33,7 @@
 ### 2020.11.04
 
 - [理解原型和继承](https://github.com/tkiddo/front-end-interview/blob/main/docs/prototype-inheritance.md)
+
+### 2020.11.10
+
+- [react 组件挂载](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-component-mounting.md)
