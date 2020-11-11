@@ -37,3 +37,7 @@
 ### 2020.11.10
 
 - [react 组件挂载](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-component-mounting.md)
+
+### 2020.11.11
+
+- [react 组件的更新，卸载和错误处理](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-component-update-unmount-error.md)
