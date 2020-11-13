@@ -45,3 +45,7 @@
 ### 2020.11.12
 
 - [react 组件间通信方式](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-component-communation.md)
+
+### 2020.11.13
+
+- [react 高阶组件](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-HOC.md)
