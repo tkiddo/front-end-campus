@@ -49,3 +49,7 @@
 ### 2020.11.13
 
 - [react 高阶组件](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-HOC.md)
+
+### 2020.11.16
+
+- [redux 可以这么理解](https://github.com/tkiddo/front-end-interview/blob/main/docs/redux-simple-understanding.md)
