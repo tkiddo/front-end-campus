@@ -57,3 +57,7 @@
 ### 2020.11.18
 
 - [搞懂 redux 中间件](https://github.com/tkiddo/front-end-interview/blob/main/docs/redux-middleware.md)
+
+### 2020.12.8
+
+- [理解 React 的 `setState`](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-setState.md)
