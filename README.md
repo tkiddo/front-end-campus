@@ -1,3 +1,11 @@
+<!--
+ * @Author: tkiddo
+ * @Date: 2020-11-02 08:43:42
+ * @LastEditors: tkiddo
+ * @LastEditTime: 2020-12-09 13:46:31
+ * @Description:
+-->
+
 # 前端面试
 
 准备面试的过程中，顺便写点东西。
@@ -61,3 +69,7 @@
 ### 2020.12.8
 
 - [理解 React 的 `setState`](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-setState.md)
+
+### 2020.12.9
+
+- [React Hooks 初探](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-hooks-primer.md)
