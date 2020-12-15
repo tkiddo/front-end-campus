@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2020-12-14 20:55:06
+ * @LastEditTime: 2020-12-15 10:15:15
  * @Description:
 -->
 
@@ -81,3 +81,7 @@
 ### 2020.12.14
 
 - [谈一谈 useEffect](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-useEffect.md)
+
+### 2020.12.15
+
+- [手写 JS 系列：call，apply，bind](https://github.com/tkiddo/front-end-interview/blob/main/docs/call-apply-bind.md)
