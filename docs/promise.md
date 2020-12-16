@@ -1,0 +1,409 @@
+<!--
+ * @Author: tkiddo
+ * @Date: 2020-12-16 10:45:12
+ * @LastEditors: tkiddo
+ * @LastEditTime: 2020-12-16 14:21:40
+ * @Description:
+-->
+
+# 手写系列：Promise 实现
+
+查阅[Promise/A+](https://promisesaplus.com/)规范，可以大致了解 Promise 是什么，以及有哪些要素。
+
+首先，来看一下 Promise 是怎么用的：
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(1);
+  }, 1000);
+});
+
+promise.then(
+  (res) => {
+    console.log(res);
+  },
+  (err) => {
+    console.error(err);
+  }
+);
+```
+
+## Promise 是什么
+
+Promise 表示异步操作的最终结果，与 Promise 交互的最主要的方法是将回调函数传入 Promise 的 then 方法，从而获得 Promise 最终的值或者 Promise 被拒绝的原因。
+
+在例子中，Promise 成功的回调是`(res)=>console.log(res)`，其中 res 就是 Promise 最终的值，而失败的回调是`(err)=>console.error(err)`，其中 err 就是 Promise 被拒绝的原因。
+
+## Promise 包含哪些要素
+
+首先，Promise 是一个函数，接收的参数是也是一个函数
+
+```js
+function MyPromise(executor) {}
+```
+
+**Promise 状态**
+
+根据规范，Promise 必须处在以下三种状态之一：pending，fulfilled，rejected。
+
+- 如果状态是 pending（进行中），则可以转换为 fulfilled 或者 rejected
+
+- 如果状态是 fulfilled（成功），则 Promise 不能转化为其他状态，且必须有一个值代表 Promise 最终的值
+
+- 如果状态是 rejected（被拒绝）,则 Promise 也不能转化为其他状态，且必须有一个原因，代表 Promise 被拒绝的原因
+
+根据者三条规则，完善我们的 Promise
+
+```js
+function MyPromise(executor) {
+  // promise的状态，只能是pending，fulfilled，rejected
+  this.state = 'pending';
+  // promise的值
+  this.value = null;
+  // promise reject的原因
+  this.reason = null;
+}
+```
+
+**then**
+
+Promise 必须有一个 then 方法，并接收两个函数，分别是 Promise 成功时的回调，和 Promise 被拒绝时的回调
+
+```js
+MyPromise.prototype.then = function (onFulfilled, onRejected) {};
+```
+
+## Promise 如何运行
+
+我们再来看开头的例子：
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(1);
+  }, 1000);
+});
+```
+
+当我们 new 一个 Promise 的时候，传入的函数有两个参数，这两个参数也是函数。这两个函数是做什么的呢？
+
+resolve 是促使 Promise 成功的函数，也就是将 Promise 的状态置为 fulfilled，并将 Promise 的值赋值，例子中就是将 Promsie 的值改为 1。
+
+reject 是拒绝 Promise 的函数，也就是将 Promise 的状态置为 rejected，并将 Promise 被拒绝的原因赋值。
+
+所以说，在 Promise 中还需要定义这两个函数
+
+```js
+function MyPromise(excutor) {
+  // promise的状态，只能是pending，fulfilled，rejected
+  this.state = 'pending';
+  // promise的值
+  this.value = null;
+  // promise reject的原因
+  this.reason = null;
+
+  const resolve = (value) => {
+    if (this.state === 'pending') {
+      // state更新为fulfilled，value更新为目标值
+      this.value = value;
+      this.state = 'fulfilled';
+
+      // 执行Promise成功的更多操作，也就是then方法的第一个参数onFulfilled
+    }
+  };
+
+  const reject = (reason) => {
+    if (this.state === 'pending') {
+      // state更新为rejected，reason更新为目标原因
+      this.reason = reason;
+      this.state = 'rejected';
+
+      // 执行Promise被拒绝的更多操作，也就是then方法的第二个参数onRejected
+    }
+  };
+
+  // 执行函数
+  try {
+    excutor(resolve, reject);
+  } catch (error) {
+    resolve(error);
+  }
+}
+```
+
+> 注意，这里如果要在 resolve 和 reject 函数中使用 this，请使用箭头函数
+
+然后，来看到 then 方法
+
+```js
+MyPromise.prototype.then = function (onFulfilled, onRejected) {};
+```
+
+当执行 then 方法的时候，Promise 的状态可能是 pending，也可能是 fulfilled 或者 rejected
+
+- 如果是 fulfilled，则执行 onFulfilled 函数，参数为 Promise 的终值
+
+```js
+if (this.state === 'fulfilled') {
+  onFulfilled(this.value);
+}
+```
+
+- 如果是 rejected，则执行 onRejected 函数，参数为 Promise 被拒绝的原因
+
+```js
+if (this.state === 'rejected') {
+  onRejected(this.reason);
+}
+```
+
+- 如果是 pending，则需要等待状态变为 fulfilled 或者 rejected 时再执行相应的函数，暂时需要存起来
+
+```js
+if (this.state === 'pending') {
+  this.onRejected = onRejected;
+  this.onFulfilled = onFulfilled;
+}
+```
+
+然后，在 resolve 或者 reject 函数中，Promise 状态改变时执行
+
+```js
+this.onFulfilled = () => {};
+this.onRejected = () => {};
+
+const resolve = (value) => {
+  if (this.state === 'pending') {
+    this.value = value;
+    this.state = 'fulfilled';
+    // 状态改为fulfilled时再执行
+    this.onFulfilled(this.value);
+  }
+};
+
+const reject = (reason) => {
+  if (this.state === 'pending') {
+    this.reason = reason;
+    this.state = 'rejected';
+    // 状态改为rejected时再执行
+    this.onRejected(this.reason);
+  }
+};
+```
+
+现在，看起来没有问题了。
+
+但是，我们再看规范，提到
+
+**同一个 Promise，它的 then 方法可以调用多次，也就是可以注册多个 onFulfilled 函数和 onRejected 函数。当 Promise 状态改为 fulfilled 时，所有 onFulfilled 回调按照注册顺序执行，当 Promise 状态改为 rejected 时，所有 onRejected 回调按顺序执行**
+
+按顺序执行，我们自然而然地会联想到一种数据结构，没错，就是队列。
+
+我们要对原有的逻辑进行更改。
+
+首先，再 Promise 内部要维护两个队列，一个是 onFulfilled 队列，用来存储成功的回调，一个是 onRejected 队列，用来存储拒绝的回调。
+
+```js
+function MyPromise{
+  //...
+
+  // promise成功的执行队列
+  this.fullfilledQueue = [];
+  // promise失败的执行队列
+  this.rejectedQueue = [];
+}
+```
+
+然后，当 Promise 状态改变时，按顺序执行对应队列里的回调函数
+
+```js
+const resolve = (value) => {
+  if (this.state === 'pending') {
+    this.value = value;
+    this.state = 'fulfilled';
+
+    this.fullfilledQueue.forEach((fn) => {
+      fn(this.state);
+    });
+  }
+};
+
+const reject = (reason) => {
+  if (this.state === 'pending') {
+    this.reason = reason;
+    this.state = 'rejected';
+
+    this.rejectedQueue.forEach((fn) => {
+      fn(this.reason);
+    });
+  }
+};
+```
+
+then 方法中，临时保存回调函数也要改成向对应的队列中加入回调函数
+
+```js
+MyPromise.prototype.then = function (onFulfilled, onRejected) {
+  if (this.state === 'fulfilled') {
+    onFulfilled(this.value);
+  }
+
+  if (this.state === 'rejected') {
+    onRejected(this.reason);
+  }
+
+  // 将回调函数添加到相应的队列
+  if (this.state === 'pending') {
+    this.fullfilledQueue.push(() => {
+      onFulfilled(this.value);
+    });
+
+    this.rejectedQueue.push(() => {
+      onRejected(this.reason);
+    });
+  }
+};
+```
+
+> 为保证 this 指向 Promise 实例，多处使用箭头函数
+
+## 链式调用
+
+我们知道，Promise 的 then 方法可以链式调用，那么我们来实际使用下手动实现的 Promise
+
+```js
+const promise = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(1);
+  }, 1000);
+});
+
+promise
+  .then(
+    (res) => {
+      return res + 1;
+    },
+    (err) => {
+      console.error(err);
+    }
+  )
+  .then((res) => {
+    console.log(res);
+  });
+```
+
+发现，报错了`Uncaught TypeError: Cannot read property 'then' of undefined`。
+
+理由很简单，就是第二次调用 then 方法不是一个对象，或者该对象上不存在 then 方法。
+
+根据规范，then 方法必须返回一个 Promise。
+
+我们再对其进行改造，返回一个 Promise：
+
+```js
+MyPromise.prototype.then = function (onFulfilled, onRejected) {
+  if (this.state === 'pending') {
+    return new MyPromise((resolve, reject) => {
+      this.fullfilledQueue.push(() => {
+        const result = onFulfilled(this.value);
+        resolve(result);
+      });
+      this.rejectedQueue.push(() => {
+        const result = onRejected(this.reason);
+        reject(result);
+      });
+    });
+  }
+  if (this.state === 'fulfilled') {
+    return new MyPromise((resolve, reject) => {
+      const result = onFulfilled(this.value);
+      resolve(result);
+    });
+  }
+  if (this.state === 'rejected') {
+    return new MyPromise((resolve, reject) => {
+      const result = onRejected(this.reason);
+      reject(result);
+    });
+  }
+};
+```
+
+这样，就基本实现了 Promise。
+
+## 完整代码
+
+```js
+function MyPromise(excutor) {
+  // promise的状态，只能是pending，fulfilled，rejected
+  this.state = 'pending';
+  // promise的值
+  this.value = null;
+  // promise reject的原因
+  this.reason = null;
+
+  // promise成功的回调队列
+  this.fullfilledQueue = [];
+  // promise失败的回调队列
+  this.rejectedQueue = [];
+
+  const resolve = (value) => {
+    if (this.state === 'pending') {
+      this.value = value;
+      this.state = 'fulfilled';
+
+      this.fullfilledQueue.forEach((fn) => {
+        fn(this.state);
+      });
+    }
+  };
+
+  const reject = (reason) => {
+    if (this.state === 'pending') {
+      this.reason = reason;
+      this.state = 'rejected';
+
+      this.rejectedQueue.forEach((fn) => {
+        fn(this.reason);
+      });
+    }
+  };
+
+  try {
+    excutor(resolve, reject);
+  } catch (error) {
+    resolve(error);
+  }
+}
+
+// promise 是一个包含then方法的对象或函数
+MyPromise.prototype.then = function (onFulfilled, onRejected) {
+  if (this.state === 'pending') {
+    return new MyPromise((resolve, reject) => {
+      this.fullfilledQueue.push(() => {
+        const result = onFulfilled(this.value);
+        resolve(result);
+      });
+      this.rejectedQueue.push(() => {
+        const result = onRejected(this.reason);
+        reject(result);
+      });
+    });
+  }
+  if (this.state === 'fulfilled') {
+    return new MyPromise((resolve, reject) => {
+      const result = onFulfilled(this.value);
+      resolve(result);
+    });
+  }
+  if (this.state === 'rejected') {
+    return new MyPromise((resolve, reject) => {
+      const result = onRejected(this.reason);
+      reject(result);
+    });
+  }
+};
+```
+
+更多文章，参见 github：[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
