@@ -2,11 +2,11 @@
  * @Author: tkiddo
  * @Date: 2020-12-27 10:24:37
  * @LastEditors: tkiddo
- * @LastEditTime: 2020-12-28 10:45:21
+ * @LastEditTime: 2020-12-28 19:49:18
  * @Description:
 -->
 
-# HTTP Cache Headers 完全指南
+# web 缓存之 HTTP Cache Headers
 
 在 web 应用中，一般针对静态资源如 css，js，图片文件等使用缓存。使用缓存的好处有：
 
