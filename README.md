@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2020-12-28 19:55:30
+ * @LastEditTime: 2020-12-29 16:55:37
  * @Description:
 -->
 
@@ -97,3 +97,7 @@
 ### 2020.12.28
 
 - [web-cache](https://github.com/tkiddo/front-end-interview/blob/main/docs/web-cache.md)
+
+### 2020.12.29
+
+- [react-error](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-error.md)
