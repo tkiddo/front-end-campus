@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-01-01 15:59:57
+ * @LastEditTime: 2021-01-01 16:01:03
  * @Description:
 -->
 
@@ -88,7 +88,7 @@
 
 ### 2020.12.17
 
-- [react-key](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-key.md)
+- [react 中的 key](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-key.md)
 
 ### 2020.12.22
 
@@ -96,12 +96,12 @@
 
 ### 2020.12.28
 
-- [web-cache](https://github.com/tkiddo/front-end-interview/blob/main/docs/web-cache.md)
+- [web 缓存](https://github.com/tkiddo/front-end-interview/blob/main/docs/web-cache.md)
 
 ### 2020.12.29
 
-- [react-error](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-error.md)
+- [react 错误捕获](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-error.md)
 
 ### 2021.01.01
 
-- [git-flow](https://github.com/tkiddo/front-end-interview/blob/main/docs/git-flow.md)
+- [git-flow 实践](https://github.com/tkiddo/front-end-interview/blob/main/docs/git-flow.md)
