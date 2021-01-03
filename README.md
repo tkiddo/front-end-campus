@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-01-01 16:01:03
+ * @LastEditTime: 2021-01-03 20:19:36
  * @Description:
 -->
 
@@ -105,3 +105,7 @@
 ### 2021.01.01
 
 - [git-flow 实践](https://github.com/tkiddo/front-end-interview/blob/main/docs/git-flow.md)
+
+### 2021.01.03
+
+- [react 中的受控组件和非受控组件](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-control.md)
