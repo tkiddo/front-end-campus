@@ -2,13 +2,13 @@
  * @Author: tkiddo
  * @Date: 2021-01-04 13:46:41
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-01-04 14:30:01
+ * @LastEditTime: 2021-01-04 20:53:26
  * @Description:
 -->
 
 # React Children 与 Typescript
 
-React 中的`children`属性是创建可重用组件的关键，因为它支持组件间的相互组合。在视觉上，我们可以认为组件的实际调用者来控制组件的渲染。本文就涵盖了几种在 typescript 中定义`children`属性类型的情况
+React 中的`children`属性是创建可重用组件的关键，因为它支持组件间的相互组合。本文就讨论几种在 typescript 中定义`children`属性类型的情况
 
 ## 使用`FC`类型
 
