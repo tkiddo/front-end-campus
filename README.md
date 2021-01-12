@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-01-10 15:10:31
+ * @LastEditTime: 2021-01-10 16:26:55
  * @Description:
 -->
 
@@ -86,6 +86,10 @@
 
 - [手写 JS 系列：call，apply，bind](https://github.com/tkiddo/front-end-interview/blob/main/docs/call-apply-bind.md)
 
+### 2020.12.16
+
+- [手写 JS 系列：promise 实现](https://github.com/tkiddo/front-end-interview/blob/main/docs/promise.md)
+
 ### 2020.12.17
 
 - [react 中的 key](https://github.com/tkiddo/front-end-interview/blob/main/docs/react-key.md)
@@ -117,3 +121,7 @@
 ### 2021.01.10
 
 - [CSS position](https://github.com/tkiddo/front-end-interview/blob/main/docs/css-position.md)
+
+### 2021.01.10
+
+- [CSS position](https://github.com/tkiddo/front-end-interview/blob/main/docs/promise-api.md)
