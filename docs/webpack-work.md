@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2021-01-12 15:17:24
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-01-13 10:14:16
+ * @LastEditTime: 2021-01-13 20:30:21
  * @Description:
 -->
 
@@ -103,7 +103,7 @@ webpack 正是提供了这三个变量来实现了 CommonJS 模块。
 
 从模块中导入模块的语句可以找到当前模块的依赖，比如`import message from './message.js';`，但是这种做法不灵活，更好的办法是使用 JavaScript 解析器。
 
-JavaScript 解析器的作用是读取模块内容，并将其转化为 AST，即![抽象语法树](https://baike.baidu.com/item/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91/6129952)
+JavaScript 解析器的作用是读取模块内容，并将其转化为 AST，即[抽象语法树](https://baike.baidu.com/item/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91/6129952)
 
 比如：
 
@@ -197,11 +197,11 @@ console.log(message);
 }
 ```
 
-> ![AST explorer](https://astexplorer.net/)是一个在线转化 AST 的网站，你可以很方便地看到代码对应的 AST
+> [AST explorer](https://astexplorer.net/)是一个在线转化 AST 的网站，你可以很方便地看到代码对应的 AST
 
 其中`"type": "ImportDeclaration",`的子节点，就是模块引入的声明，以此来分析模块依赖更为方便。
 
-![babel](https://babel.docschina.org/docs/en/)为我们提供了一系列工具来做这些事情。
+[babel](https://babel.docschina.org/docs/en/)为我们提供了一系列工具来做这些事情。
 
 我们使用`@babel/parser`作为 JavaScript 解析器，使用`@babel/traverse`来对 AST 进行操作，使用`@babel/core`中的`transformFromAst`方法来转译代码
 
@@ -357,7 +357,7 @@ function createGraph(entry) {
 function bundle(graph) {
   let modules = '';
 
-  // 拼接模块字符串，将模块代码包含在函数中，做到变量隔离
+  // 拼接模块字符串，将模块转译后代码包含在函数中，做到变量隔离
   graph.forEach((item, index) => {
     modules += `${item.id}:[
       function(require,module,exports){
@@ -372,6 +372,7 @@ function bundle(graph) {
   let result = `
   (function(modules){
     function require(id){
+      // 第一个是模块代码，第二个是模块依赖
       const [fn,mapping] = modules[id];
 
       function localRequire(name){
@@ -382,6 +383,7 @@ function bundle(graph) {
 
       fn(localRequire,module,module.exports);
 
+      // 将模块接口暴露出去
       return module.exports;
     }
     require(0);
@@ -391,3 +393,16 @@ function bundle(graph) {
   return result;
 }
 ```
+
+这样，我们就完成了多个模块合并到一个 js 文件中。
+
+```js
+const graph = createGraph('./entry.js');
+const result = bundle(graph);
+
+fs.writeFile(path.resolve(__dirname, 'dist.js'), result, () => {});
+```
+
+这也就是 webpack 最基本的功能实现，当然，webpack 要复杂的多。
+
+参考：[minipack](https://github.com/ronami/minipack)
