@@ -1,9 +1,9 @@
 /*
  * @Author: tkiddo
- * @Date: 2021-01-12 17:10:51
+ * @Date: 2021-01-12 10:57:31
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-01-12 17:19:45
- * @Description:/*
+ * @LastEditTime: 2021-01-14 14:59:12
+ * @Description:
  */
 
 const fs = require('fs');
@@ -12,10 +12,8 @@ const parser = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const { transformFromAst } = require('@babel/core');
 
-let ID = 0;
-
 function createAsset(filename) {
-  const content = fs.readFileSync(path.resolve(__dirname, filename), 'utf-8');
+  const content = fs.readFileSync(filename, 'utf-8');
 
   const ast = parser.parse(content, { sourceType: 'module' });
 
@@ -28,14 +26,18 @@ function createAsset(filename) {
   });
 
   const { code } = transformFromAst(ast, null, { presets: ['@babel/preset-env'] });
-  const id = ID++;
-  return { id, filename, code, dependencies };
+
+  return { filename, code, dependencies };
 }
 
 function createGraph(entry) {
   const entryAsset = createAsset(entry);
 
   const queue = [entryAsset];
+
+  const graph = {};
+
+  graph[entryAsset.filename] = entryAsset;
 
   for (const asset of queue) {
     const { dependencies } = asset;
@@ -45,54 +47,63 @@ function createGraph(entry) {
     const dirname = path.dirname(asset.filename);
 
     dependencies.forEach((filename) => {
-      const absolutePath = path.join(dirname, filename);
+      const absolutePath = path.join(dirname, filename).replace(/\\/g, '/');
 
-      const child = createAsset(absolutePath);
+      let child;
 
-      asset.mapping[filename] = child.id;
+      if (graph[absolutePath]) {
+        child = graph[absolutePath];
+      } else {
+        child = createAsset(absolutePath);
+        graph[absolutePath] = child;
+        queue.push(child);
+      }
 
-      queue.push(child);
+      asset.mapping[filename] = absolutePath;
     });
   }
-  return queue;
+
+  return graph;
 }
 
-function bundle(graph) {
+function bundle(entry) {
+  const graph = createGraph(entry);
+
   let modules = '';
 
-  graph.forEach((item, index) => {
-    modules += `${item.id}:[
-      function(require,module,exports){
-        ${item.code}
-      },
-      ${JSON.stringify(item.mapping)}
-    ],
+  Object.keys(graph).forEach((key) => {
+    const { code, mapping } = graph[key];
+
+    let newCode = code;
+    Object.keys(mapping).forEach((mkey) => {
+      newCode = newCode.replace(mkey, mapping[mkey]);
+    });
+
+    modules += `
+    '${key}':function(require,module,exports){
+      ${newCode}
+    },
     `;
   });
 
   let result = `
   (function(modules){
     function require(id){
-      const [fn,mapping] = modules[id];
-
-      function localRequire(name){
-        return require(mapping[name]);
-      }
+      const fn = modules[id]
 
       const module = { exports:{} };
 
-      fn(localRequire,module,module.exports);
+      fn(require,module,module.exports);
 
       return module.exports;
     }
-    require(0);
+    require('${entry}');
   })({${modules}})
   `;
 
   return result;
 }
 
-const graph = createGraph('../example/entry.js');
-const result = bundle(graph);
+const result = bundle('../example/src/entry.js');
 
 fs.writeFile(path.resolve(__dirname, 'dist.js'), result, () => {});
