@@ -1,0 +1,191 @@
+<!--
+ * @Author: tkiddo
+ * @Date: 2021-01-18 10:34:55
+ * @LastEditors: tkiddo
+ * @LastEditTime: 2021-01-18 11:39:26
+ * @Description:
+-->
+
+# 聊一聊 ES6 ：Map
+
+ES6 新增了 Map 内置对象，相当于是对普通对象的扩展。
+
+## Map 和 Object 的区别
+
+- **Map 在显示插入键之前不包含任何键，而 Object 由于原型的存在，可能会包含一些键**
+
+- **Map 的键可以任何类型，Object 只能是字符串或者 Symbol**
+
+你可以将任何类型的数据值作为 Map 的键，包括对象，数组，函数或任意基本类型，而一个 Object 的键必须是一个 `String` 或者 `Symbol`
+
+```js
+const map = new Map();
+map.set({ name: 'king' }, [1, 2, 3]);
+```
+
+- **Map 中的 key 是有序的，而 Object 的键是无序的**
+
+- **Map 的键值个数可以通过 size 轻易获得，而 Object 需要手动计算**
+
+- **Map 在频繁增删场景下表现更好**
+
+## Map 主要 API
+
+- `Map.prototype.size`
+
+  返回 Map 对象键/值对的数量
+
+- `Map.prototype.set(key,value)`
+
+  设置 Map 对象中键的值。返回该 Map 对象。
+
+- `Map.prototype.get(key)`
+
+  返回键对应的值，如果不存在，则返回 `undefined`。
+
+- `Map.prototype.delete(key)`
+
+  如果 Map 对象中存在该元素，则移除它并返回 `true`；否则如果该元素不存在则返回 `false`。
+
+- `Map.prototype.has(key)`
+
+  返回一个布尔值，表示 Map 实例是否包含键对应的值。
+
+- `Map.prototype.keys()`
+
+  返回一个新的 `Iterator`对象， 它按插入顺序包含了 Map 对象中每个元素的键 。
+
+- `Map.prototype.values()`
+
+  返回一个新的`Iterator`对象，它按插入顺序包含了 Map 对象中每个元素的值 。
+
+- `Map.prototype.entries()`
+
+返回一个新的 `Iterator` 对象，它按插入顺序包含了 Map 对象中每个元素的 [key, value] 数组。
+
+- `Map.prototype.clear()`
+
+  移除 Map 对象的所有键/值对 。
+
+- `Map.prototype.forEach(callbackFn[, thisArg])`
+
+  按插入顺序，为 Map 对象里的每一键值对调用一次 callbackFn 函数。如果为 forEach 提供了 thisArg，它将在每次回调中作为 this 值。
+
+## 如何实现一个 Map 对象
+
+我们知道了 Map 的优势与用法，也想知道 Map 是如何实现的。
+
+其实 Map 和 Object 最大的区别是键的类型，如何做到键可以是任意类型是关键。
+
+将键和值分别保存到对象中，比如这样的对象`{key:{name:'a'},value:()=>{}}`,这样就能做到 key 和 value 都可以是任意类型了。
+
+然后就是如何保存这些对象，我们首先想到的是数组，但之前提到 Map 和 Object 的另一个区别就是**Map 在频繁增删场景下表现更好**，数组明显不行，因为数组中数据的增删往往需要移动其他元素。还有一种数据结构，可以做到增删数据时不移动其他元素，那就是**链表**。通过链表来删除数据，只需要改变指针的指向即可，比如这样一个链表`a->b->c`，我们要删除 b，只需将 a 的 `next` 指向 c 即可。
+
+所以，可以使用链表来实现一个 Map，以下是简单的实现源码：
+
+```js
+class MyMap {
+  constructor() {
+    // 链表的头，遍历的起点
+    this.head = { next: null };
+  }
+
+  set(key, value) {
+    let current = this.head;
+    // 遍历链表
+    while (current.next) {
+      // 判断键值是否相同，相同则覆盖value
+      if (current.next.key === key) {
+        return (current.next.value = value);
+      }
+      current = current.next;
+    }
+    // 在链表中没有找到相同key值的，则创建新的元素，添加到链表尾部
+    const el = { key, value, next: null };
+    current.next = el;
+  }
+
+  get(key) {
+    let current = this.head;
+    // 遍历查找相同key值是否存在
+    while (current.next) {
+      if (current.next.key === key) {
+        return current.next.value;
+      }
+      current = current.next;
+    }
+    return undefined;
+  }
+
+  delete(key) {
+    let current = this.head;
+    while (current.next) {
+      if (current.next.key === key) {
+        // 删除链表中指定项
+        current.next = current.next.next;
+      }
+      current = current.next;
+    }
+  }
+
+  has(key) {
+    let current = this.head;
+    while (current.next) {
+      if (current.next.key === key) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
+
+  clear() {
+    this.head = { next: null };
+  }
+
+  keys() {
+    let current = this.head;
+    //用数组保存所有键
+    const keys = [];
+    while (current.next) {
+      keys.push(current.next.key);
+      current = current.next;
+    }
+
+    return keys;
+  }
+
+  values() {
+    let current = this.head;
+    //用数组保存所有值
+    const values = [];
+    while (current.next) {
+      values.push(current.next.value);
+      current = current.next;
+    }
+
+    return values;
+  }
+
+  entries() {
+    let current = this.head;
+    //用数组保存所有键值对
+    const entries = [];
+    while (current.next) {
+      entries.push([current.next.key, current.next.value]);
+      current = current.next;
+    }
+
+    return entries;
+  }
+}
+
+const map = new MyMap();
+
+map.set(1, [1, 2, 3]);
+map.set('haha', { name: 'ahha' });
+map.set({ key: 'gas' }, Symbol('s'));
+map.set({ key: 'gas' }, () => {});
+map.delete('haha');
+console.log(map.keys(), map.values(), map.entries());
+```

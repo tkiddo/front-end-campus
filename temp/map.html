@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    class MyMap {
+      constructor() {
+        this.head = { next: null };
+        this.current = this.head;
+      }
+
+      set(key, value) {
+        const el = {};
+        el.next = null;
+        this.current.next = el;
+        this.current = el;
+      }
+
+      get(key) {
+        let current = this.head;
+        while (current) {
+          if (current.key == key) {
+            return current.value;
+          }
+          current = current.next;
+        }
+        return undefined;
+      }
+    }
+
+    const map = new MyMap();
+    const key = { name: 'key' };
+    const value = 10;
+    map.set(key, value);
+    console.log(map.get(key));
+  </script>
+</html>
