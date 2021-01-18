@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-01-18 09:11:35
+ * @LastEditTime: 2021-01-18 11:40:29
  * @Description:
 -->
 
@@ -129,3 +129,7 @@
 ### 2021.01.13
 
 - [webpack 原理初探](https://github.com/tkiddo/front-end-interview/blob/main/docs/webpack-wrok.md)
+
+### 2021.01.18
+
+- [聊一聊 ES6：Map](https://github.com/tkiddo/front-end-interview/blob/main/docs/map.md)
