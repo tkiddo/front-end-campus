@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-02-01 16:21:29
+ * @LastEditTime: 2021-02-06 18:26:59
  * @Description:
 -->
 
@@ -137,5 +137,9 @@
 ### 2021.01.31
 
 - [33. 从输入 URL 到网页展示，之间发生了什么？](https://github.com/tkiddo/front-end-interview/blob/main/docs/from-url-to-page.md)
+
+### 2021.02.06
+
+- [34. let，consth 和 var](https://github.com/tkiddo/front-end-interview/blob/main/docs/let-const-var.md)
 
 - eslint 和 prettier
