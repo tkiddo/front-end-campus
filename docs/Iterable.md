@@ -41,3 +41,19 @@ for (const value of myFavouriteAuthors) {
   console.log(value);
 }
 ```
+
+现在，假设将之前的数组改为以下结构：
+
+```js
+const myFavouriteAuthors = {
+  allAuthors: {
+    fiction: ['J.K.Rowling', 'Dr.Seuss'],
+    scienceFiction: ['Neal Stephenson', 'Arthur Clarke'],
+    fantasy: ['J.R.R.Tolkien', 'Terry Pratchett']
+  }
+};
+```
+
+现在，`myFavouriteAuthors`是一个包含另一个对象`allAuthors`的对象，`allAuthors`包含三个数组，`fiction`，`scienceFiction`和`fantasy`。
+
+当我们
