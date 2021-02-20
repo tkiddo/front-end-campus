@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2020-11-02 08:43:42
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-02-06 18:26:59
+ * @LastEditTime: 2021-02-20 10:35:31
  * @Description:
 -->
 
@@ -141,5 +141,9 @@
 ### 2021.02.06
 
 - [34. let，consth 和 var](https://github.com/tkiddo/front-end-interview/blob/main/docs/let-const-var.md)
+
+### 2021.02.20
+
+- [35. ES6 迭代器入门](https://github.com/tkiddo/front-end-interview/blob/main/docs/iterable.md)
 
 - eslint 和 prettier
