@@ -2,7 +2,7 @@
  * @Author: tkiddo
  * @Date: 2021-02-19 09:56:25
  * @LastEditors: tkiddo
- * @LastEditTime: 2021-02-20 17:09:51
+ * @LastEditTime: 2021-02-22 13:53:40
  * @Description:
 -->
 
@@ -187,6 +187,48 @@ const fetchJson = co.wrap(function* (url) {
 
 一些读者可能发现了，这和`async/await`很像，确实，`async/await`也是基于生成器实现的语法糖。
 
+参考[co.js](https://github.com/tj/co),`async/await`可以这样实现：
+
+```js
+// 创建一个Promise模拟异步
+function foo() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(1);
+    }, 1000);
+  });
+}
+
+// 生成器函数
+function* gen() {
+  const a = yield foo();
+  console.log(a);
+  const b = yield foo();
+  console.log(b);
+}
+
+function async(gen) {
+  // 返回一个Promise
+  return new Promise((resolve, reject) => {
+    const g = gen();
+    // 自动执行next函数
+    function next(res) {
+      // 如果done为true，则不再执行，返回最后的value
+      if (res.done) return resolve(res.value);
+      // 如果done不为true，则表示还有更多的值，继续执行
+      return res.value.then((res) => {
+        // 将异步结果作为参数传递给迭代器的next函数
+        next(g.next(res));
+      });
+    }
+    next(g.next());
+  });
+}
+
+// 为生成器函数包裹自动执行器
+async(gen);
+```
+
 #### 无限数据流
 
 我们可以创建永远不会结束的生成器，就像这样：
@@ -221,3 +263,5 @@ console.log(...take(10, numbers)); // This will not give any data
 ```
 
 2. 生成器对象中的值不能像数组一样随机访问，因为是一个一个生成的，必须按顺序访问
+
+更多文章，参见 github:[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)

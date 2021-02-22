@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function promise1() {
+        return new Promise((resolve) => {
+          console.log('async1 start');
+          promise2().then(() => {
+            console.log('async1 end');
+            resolve();
+          });
+        });
+      }
+      function promise2() {
+        return new Promise((resolve) => {
+          console.log('async2');
+          resolve();
+        });
+      }
+      console.log('script start');
+      setTimeout(function () {
+        console.log('settimeout');
+      });
+      promise1();
+      new Promise(function (resolve) {
+        console.log('promise1');
+        resolve();
+      }).then(function () {
+        console.log('promise2');
+      });
+      console.log('script end');
+
+      //callstack: promise1 console.log('async1 start');promise2 
+      //message queue: console.log('settimeout');console.log('async1 end');console.log('promise2');
+
+      // console.log('script start');console.log('async1 start');console.log('async2');console.log('promise1');console.log('script end');console.log('async1 end')console.log('promise2')
+    </script>
+  </body>
+</html>
