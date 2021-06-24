@@ -1,0 +1,29 @@
+{
+  "name": "front-end-campus",
+  "version": "1.0.0",
+  "description": "<!--  * @Author: tkiddo  * @Date: 2020-11-02 08:43:42  * @LastEditors: tkiddo  * @LastEditTime: 2021-02-20 10:35:31  * @Description: -->",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev blog",
+    "build": "vuepress build blog"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkiddo/front-end-campus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tkiddo/front-end-campus/issues"
+  },
+  "homepage": "https://github.com/tkiddo/front-end-campus#readme",
+  "devDependencies": {
+    "@vuepress/theme-blog": "^2.3.3",
+    "vuepress": "^1.8.2"
+  }
+}
