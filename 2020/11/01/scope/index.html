@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>作用域是什么？ | 前端后花园</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="
+
+对于作用域是什么的问题，我一直以来都不知道如何去解释，直到我看了《你不知道的 Javascript（上卷）》，从编译原理开始去理解作用域，会更加清晰。
+
+从编译开始
+
+在传统编译语言，程序中的一段源码在执行之前会经历三个步骤，统称为“编译”。
+
+分词/词法分析
+
+代码其实就是字符串，词法分析过程就是将字符串分解成有意义的代码块，这些代码块被称作词法单元。比如，“var a = 2” ...">
+    
+    <link rel="preload" href="/front-end-campus/assets/css/0.styles.80bf0f19.css" as="style"><link rel="preload" href="/front-end-campus/assets/js/app.040c43e1.js" as="script"><link rel="preload" href="/front-end-campus/assets/js/8.a2f9fc6b.js" as="script"><link rel="preload" href="/front-end-campus/assets/js/3.41215964.js" as="script"><link rel="preload" href="/front-end-campus/assets/js/9.8d22c95f.js" as="script"><link rel="prefetch" href="/front-end-campus/assets/js/10.85a9cb3b.js"><link rel="prefetch" href="/front-end-campus/assets/js/11.53b1dbe7.js"><link rel="prefetch" href="/front-end-campus/assets/js/12.1610562a.js"><link rel="prefetch" href="/front-end-campus/assets/js/13.a85975a0.js"><link rel="prefetch" href="/front-end-campus/assets/js/14.0324ecf3.js"><link rel="prefetch" href="/front-end-campus/assets/js/15.5b137a78.js"><link rel="prefetch" href="/front-end-campus/assets/js/16.65e5e901.js"><link rel="prefetch" href="/front-end-campus/assets/js/17.54128366.js"><link rel="prefetch" href="/front-end-campus/assets/js/18.4c8a7da6.js"><link rel="prefetch" href="/front-end-campus/assets/js/19.08f4341d.js"><link rel="prefetch" href="/front-end-campus/assets/js/20.67fb7580.js"><link rel="prefetch" href="/front-end-campus/assets/js/21.b23d47e8.js"><link rel="prefetch" href="/front-end-campus/assets/js/22.f927d120.js"><link rel="prefetch" href="/front-end-campus/assets/js/23.b3306c76.js"><link rel="prefetch" href="/front-end-campus/assets/js/24.d7662fcc.js"><link rel="prefetch" href="/front-end-campus/assets/js/25.b3c5dfc6.js"><link rel="prefetch" href="/front-end-campus/assets/js/26.df7bb02f.js"><link rel="prefetch" href="/front-end-campus/assets/js/27.9a47adb9.js"><link rel="prefetch" href="/front-end-campus/assets/js/28.b6580720.js"><link rel="prefetch" href="/front-end-campus/assets/js/29.519f43dc.js"><link rel="prefetch" href="/front-end-campus/assets/js/30.38d2946a.js"><link rel="prefetch" href="/front-end-campus/assets/js/31.d3f1ac33.js"><link rel="prefetch" href="/front-end-campus/assets/js/32.cac71243.js"><link rel="prefetch" href="/front-end-campus/assets/js/33.fe122c15.js"><link rel="prefetch" href="/front-end-campus/assets/js/34.42db9e3c.js"><link rel="prefetch" href="/front-end-campus/assets/js/35.1dc5a1cc.js"><link rel="prefetch" href="/front-end-campus/assets/js/36.4b07a7bc.js"><link rel="prefetch" href="/front-end-campus/assets/js/37.963b3f68.js"><link rel="prefetch" href="/front-end-campus/assets/js/38.3c072603.js"><link rel="prefetch" href="/front-end-campus/assets/js/39.4a6de642.js"><link rel="prefetch" href="/front-end-campus/assets/js/4.57989c11.js"><link rel="prefetch" href="/front-end-campus/assets/js/40.f29aba23.js"><link rel="prefetch" href="/front-end-campus/assets/js/41.5d8790ae.js"><link rel="prefetch" href="/front-end-campus/assets/js/42.994c22ab.js"><link rel="prefetch" href="/front-end-campus/assets/js/43.225b0082.js"><link rel="prefetch" href="/front-end-campus/assets/js/44.bae3c5d5.js"><link rel="prefetch" href="/front-end-campus/assets/js/45.772e492a.js"><link rel="prefetch" href="/front-end-campus/assets/js/46.0b752829.js"><link rel="prefetch" href="/front-end-campus/assets/js/47.66a0ad96.js"><link rel="prefetch" href="/front-end-campus/assets/js/5.27d3628d.js"><link rel="prefetch" href="/front-end-campus/assets/js/6.c291bf7d.js"><link rel="prefetch" href="/front-end-campus/assets/js/7.8113e311.js"><link rel="prefetch" href="/front-end-campus/assets/js/vuejs-paginate.15375c6c.js">
+    <link rel="stylesheet" href="/front-end-campus/assets/css/0.styles.80bf0f19.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/front-end-campus/" class="nav-link home-link">前端后花园 </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/front-end-campus/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/front-end-campus/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/front-end-campus/" class="nav-link mobile-home-link">前端后花园 </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/front-end-campus/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/front-end-campus/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        作用域是什么？
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">tkiddo</span> <!----></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2020-11-01T00:00:00.000Z">
+      Sun Nov 01 2020
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/front-end-campus/tag/JS" data-v-42ccfcd5><span data-v-42ccfcd5>JS</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h1 id="作用域是什么"><a href="#作用域是什么" class="header-anchor">#</a> 作用域是什么？</h1> <p>对于作用域是什么的问题，我一直以来都不知道如何去解释，直到我看了《你不知道的 Javascript（上卷）》，从编译原理开始去理解作用域，会更加清晰。</p> <h3 id="从编译开始"><a href="#从编译开始" class="header-anchor">#</a> 从编译开始</h3> <p>在传统编译语言，程序中的一段源码在执行之前会经历三个步骤，统称为“编译”。</p> <ul><li>分词/词法分析</li></ul> <p>代码其实就是字符串，词法分析过程就是将字符串分解成有意义的代码块，这些代码块被称作词法单元。比如，“var a = 2”，会被分解成：var，a，=，2。</p> <ul><li>解析/语法解析</li></ul> <p>这个过程就是将词法单元流（数组）转换成一个由元素逐级嵌套所组成的代表了程序语法结构的树，即抽象语法树（AST）。</p> <p>比如<code>var a = 6</code>，解析成的 AST 是这样的：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Program&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;VariableDeclaration&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;declarations&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;VariableDeclarator&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Identifier&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;range&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">36</span><span class="token punctuation">,</span> <span class="token number">37</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;loc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">4</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;end&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">5</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;init&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Literal&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;raw&quot;</span><span class="token operator">:</span> <span class="token string">&quot;6&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;range&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">38</span><span class="token punctuation">,</span> <span class="token number">39</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;loc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">6</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;end&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">7</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;range&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">36</span><span class="token punctuation">,</span> <span class="token number">39</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;loc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">4</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;end&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">7</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;kind&quot;</span><span class="token operator">:</span> <span class="token string">&quot;var&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;range&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">39</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;loc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;end&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">7</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;leadingComments&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Line&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot; Life, Universe, and Everythi&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;range&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;loc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;end&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+              <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+              <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">31</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;sourceType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;script&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;range&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">39</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;loc&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;end&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;line&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;column&quot;</span><span class="token operator">:</span> <span class="token number">7</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>代码生成</li></ul> <p>将 AST 转换为可执行代码，这个过程和语言，目标平台有关，简单地说就是转换成一组机器指令并执行。</p> <p>JavaScript 任何代码片段在执行之前都要进行编译。</p> <h3 id="什么是作用域"><a href="#什么是作用域" class="header-anchor">#</a> 什么是作用域</h3> <p>为了更好地理解 JavaScript 的工作原理，我们需要知道引擎，编译器和作用域分别做了什么。</p> <ul><li>引擎</li></ul> <p>负责 JavaScript 程序的编译和执行</p> <ul><li>编译器</li></ul> <p>就是以上说的词法分析，语法分析，代码生成这些工作</p> <ul><li>作用域</li></ul> <p>负责收集和维护所有声明的标识符（可以说是变量）组成的一系列查询，并制定一套非常严格的规则，以确定当前执行的代码对这些标识符的访问权限。</p> <p>这里提到了作用域，可以将其定义为一套规则，这套规则用来管理在当前作用域以及嵌套的子作用域中根据标识符进行变量的查找。</p> <h3 id="词法作用域模型"><a href="#词法作用域模型" class="header-anchor">#</a> 词法作用域模型</h3> <p>作用域主要有两种模型：一种是词法作用域，这是大多数编程语言采用的模型，JavaScript 采用的也是这种工作模型；另一种是动态作用域。</p> <p>简单地说，词法作用域就是定义在词法阶段的作用域。也就是说，<strong>词法作用域由你在写代码时将变量和块作用域写在哪里决定，并且在词法分析阶段保持不变</strong>。</p> <p>一般来讲，函数或者是块可以创建新的作用域。当一个块或者函数在另一个块或者函数中时，就发生了作用域的嵌套。</p> <p>我们来看以下代码：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token parameter">c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">bar</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>这里可以看到有三层作用域：</p> <ol><li>首先是全局作用域，其中有一个标识符 foo；</li> <li>函数 foo 会创建自己的作用域，其中包含 3 个标识符：a,b,bar;</li> <li>函数 bar 也会创建自己的作用域，其中包含一个标识符：c。</li></ol> <blockquote><p>注意，函数传参的过程其实是声明并赋值的过程，比如在 foo 函数中，当我们给函数传参数 3 时，其实会执行“var a = 3”.</p></blockquote> <p>这里就发生了作用域的嵌套。<strong>在嵌套作用域中，如果在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量或者抵达最外层的作用域，也即是全局作用域。</strong></p> <p>更直观的，当我们对上述代码进行 debugger 时：</p> <ol><li>全局作用域，展开<code>Global</code>可以看到 foo，因为包含太多，这里就不展开了</li></ol> <p><img src="/front-end-campus/assets/img/global.1c32b67a.jpg" alt="global"></p> <ol start="2"><li>单步调试到下一步，进入 foo 函数，其函数作用域内包含 a，b，bar</li></ol> <p><img src="/front-end-campus/assets/img/foo.8740b276.jpg" alt="global"></p> <ol start="3"><li>下一步，进入 bar 函数，其函数作用域包含 c</li></ol> <p><img src="/front-end-campus/assets/img/bar.14c926f0.jpg" alt="global"></p> <h3 id="函数作用域"><a href="#函数作用域" class="header-anchor">#</a> 函数作用域</h3> <p>之前我们讲到函数或者块可以创建作用域。函数作用域的含义就是，属于这个函数的变量可以在整个函数范围内使用。</p> <p>函数作用域在实际的项目开发中有很大作用，尤其是多人协同开发的项目中。</p> <ul><li>隐藏内部实现</li></ul> <p>有时候，也许我们的某个函数或者某个变量，只在特定的情况下使用，如果放在全局作用域下，如果被误用，造成一些副作用，这是我们不愿意看到的。有了函数作用域，就可以把这个函数或者变量放在函数作用域内，这样外部作用域就不能访问，也就避免了误用。</p> <p>比如：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">doSomethingElse</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//...</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">doSomethingElse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>这里就相当于把函数<code>doSomethingElse</code>私有化保护起来，避免外部误用。</p> <ul><li>规避冲突</li></ul> <p>在多人协同开发时，命名冲突是很容易发生的事情。如果将所有变量都放置在全局作用域下，很容易出现名字重复的事情。这时候，将自己用的变量包裹到函数中，因为函数作用域的存在，就可以使得相同的命名也不受影响。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>虽然有 3 个标识符为 a 的变量，但是相互不受影响。</p> <h3 id="块作用域"><a href="#块作用域" class="header-anchor">#</a> 块作用域</h3> <p>块作用域在很多编程语言中普遍使用，但在 JavaScript 中用的不多。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>在 for 循环头部定义的变量 i，会被绑定到外部作用域，这里就是全局作用域，这点在开发中经常被忽略。</p> <p>幸而，在 ES6 中，引入了 let 声明，let 关键字可以将变量绑定到所在的任意作用域，通常是<code>{...}</code>内部。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//会报错，不能访问到i</span>
+</code></pre></div><p>同理，ES6 中 const 也可以创建块作用域，不同的是其值是常量。</p></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h3 active"><a href="#从编译开始" title="从编译开始">从编译开始</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#什么是作用域" title="什么是作用域">什么是作用域</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#词法作用域模型" title="词法作用域模型">词法作用域模型</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#函数作用域" title="函数作用域">函数作用域</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#块作用域" title="块作用域">块作用域</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/front-end-campus/assets/js/app.040c43e1.js" defer></script><script src="/front-end-campus/assets/js/8.a2f9fc6b.js" defer></script><script src="/front-end-campus/assets/js/3.41215964.js" defer></script><script src="/front-end-campus/assets/js/9.8d22c95f.js" defer></script>
+  </body>
+</html>

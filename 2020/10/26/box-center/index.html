@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>盒子垂直水平居中 | 前端后花园</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="
+
+盒子垂直水平居中的需求在项目中可以说是非常常见的，我在开发过程中常用的以下几种方法：
+首先，做一下基础的布局：
+
+    <meta name="viewport" content="width=device-width, initial ...">
+    
+    <link rel="preload" href="/front-end-campus/assets/css/0.styles.80bf0f19.css" as="style"><link rel="preload" href="/front-end-campus/assets/js/app.040c43e1.js" as="script"><link rel="preload" href="/front-end-campus/assets/js/8.a2f9fc6b.js" as="script"><link rel="preload" href="/front-end-campus/assets/js/3.41215964.js" as="script"><link rel="preload" href="/front-end-campus/assets/js/20.67fb7580.js" as="script"><link rel="prefetch" href="/front-end-campus/assets/js/10.85a9cb3b.js"><link rel="prefetch" href="/front-end-campus/assets/js/11.53b1dbe7.js"><link rel="prefetch" href="/front-end-campus/assets/js/12.1610562a.js"><link rel="prefetch" href="/front-end-campus/assets/js/13.a85975a0.js"><link rel="prefetch" href="/front-end-campus/assets/js/14.0324ecf3.js"><link rel="prefetch" href="/front-end-campus/assets/js/15.5b137a78.js"><link rel="prefetch" href="/front-end-campus/assets/js/16.65e5e901.js"><link rel="prefetch" href="/front-end-campus/assets/js/17.54128366.js"><link rel="prefetch" href="/front-end-campus/assets/js/18.4c8a7da6.js"><link rel="prefetch" href="/front-end-campus/assets/js/19.08f4341d.js"><link rel="prefetch" href="/front-end-campus/assets/js/21.b23d47e8.js"><link rel="prefetch" href="/front-end-campus/assets/js/22.f927d120.js"><link rel="prefetch" href="/front-end-campus/assets/js/23.b3306c76.js"><link rel="prefetch" href="/front-end-campus/assets/js/24.d7662fcc.js"><link rel="prefetch" href="/front-end-campus/assets/js/25.b3c5dfc6.js"><link rel="prefetch" href="/front-end-campus/assets/js/26.df7bb02f.js"><link rel="prefetch" href="/front-end-campus/assets/js/27.9a47adb9.js"><link rel="prefetch" href="/front-end-campus/assets/js/28.b6580720.js"><link rel="prefetch" href="/front-end-campus/assets/js/29.519f43dc.js"><link rel="prefetch" href="/front-end-campus/assets/js/30.38d2946a.js"><link rel="prefetch" href="/front-end-campus/assets/js/31.d3f1ac33.js"><link rel="prefetch" href="/front-end-campus/assets/js/32.cac71243.js"><link rel="prefetch" href="/front-end-campus/assets/js/33.fe122c15.js"><link rel="prefetch" href="/front-end-campus/assets/js/34.42db9e3c.js"><link rel="prefetch" href="/front-end-campus/assets/js/35.1dc5a1cc.js"><link rel="prefetch" href="/front-end-campus/assets/js/36.4b07a7bc.js"><link rel="prefetch" href="/front-end-campus/assets/js/37.963b3f68.js"><link rel="prefetch" href="/front-end-campus/assets/js/38.3c072603.js"><link rel="prefetch" href="/front-end-campus/assets/js/39.4a6de642.js"><link rel="prefetch" href="/front-end-campus/assets/js/4.57989c11.js"><link rel="prefetch" href="/front-end-campus/assets/js/40.f29aba23.js"><link rel="prefetch" href="/front-end-campus/assets/js/41.5d8790ae.js"><link rel="prefetch" href="/front-end-campus/assets/js/42.994c22ab.js"><link rel="prefetch" href="/front-end-campus/assets/js/43.225b0082.js"><link rel="prefetch" href="/front-end-campus/assets/js/44.bae3c5d5.js"><link rel="prefetch" href="/front-end-campus/assets/js/45.772e492a.js"><link rel="prefetch" href="/front-end-campus/assets/js/46.0b752829.js"><link rel="prefetch" href="/front-end-campus/assets/js/47.66a0ad96.js"><link rel="prefetch" href="/front-end-campus/assets/js/5.27d3628d.js"><link rel="prefetch" href="/front-end-campus/assets/js/6.c291bf7d.js"><link rel="prefetch" href="/front-end-campus/assets/js/7.8113e311.js"><link rel="prefetch" href="/front-end-campus/assets/js/9.8d22c95f.js"><link rel="prefetch" href="/front-end-campus/assets/js/vuejs-paginate.15375c6c.js">
+    <link rel="stylesheet" href="/front-end-campus/assets/css/0.styles.80bf0f19.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/front-end-campus/" class="nav-link home-link">前端后花园 </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/front-end-campus/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/front-end-campus/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/front-end-campus/" class="nav-link mobile-home-link">前端后花园 </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/front-end-campus/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/front-end-campus/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        盒子垂直水平居中
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">tkiddo</span> <!----></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2020-10-26T00:00:00.000Z">
+      Mon Oct 26 2020
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/front-end-campus/tag/CSS" data-v-42ccfcd5><span data-v-42ccfcd5>CSS</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/front-end-campus/tag/HTML" data-v-42ccfcd5><span data-v-42ccfcd5>HTML</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h1 id="盒子垂直水平居中"><a href="#盒子垂直水平居中" class="header-anchor">#</a> 盒子垂直水平居中</h1> <p>盒子垂直水平居中的需求在项目中可以说是非常常见的，我在开发过程中常用的以下几种方法：
+首先，做一下基础的布局：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>en<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>width=device-width, initial-scale=1.0<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+      <span class="token selector">.container</span> <span class="token punctuation">{</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> 500px<span class="token punctuation">;</span>
+        <span class="token property">height</span><span class="token punctuation">:</span> 500px<span class="token punctuation">;</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> lightblue<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token selector">.box</span> <span class="token punctuation">{</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+        <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> darkblue<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>box<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><ol><li><strong>定位</strong>
+利用绝对定位使得盒子在父容器中水平垂直居中，是简单有效的方法，在实际开发中用的很多：</li></ol> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.box</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">margin-left</span><span class="token punctuation">:</span> -50px<span class="token punctuation">;</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> -50px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>但是这种方法在<strong>子元素宽高不确定</strong>的情况下就不适用了。由于 CSS3 的出现，有了适用性更广的方案：transform。</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.box</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-50%<span class="token punctuation">,</span> -50%<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这种方法唯一的缺点是兼容性，不过现在大多数项目都不用考虑兼容性了（个人愚见）。
+基于定位，还有一种利用<code>margin:auto</code>的方法:</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.box</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这种方法的前提是子元素必须有宽高。</p> <ol start="2"><li><strong>flex</strong> <code>flex</code>是我在项目中用的最频繁的方法，逐渐取代了定位的方法，因为用起来太方便了，还不用考虑很多特殊情况，代码量也少。</li></ol> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ol start="3"><li><strong>table 布局</strong>
+还有一种基本不用，但我在有些博客中看到的方法，就是 table 布局</li></ol> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> table-cell<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.box</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>个人首推 flex 布局。</p></div> <footer><!----> <hr> <!----></footer></article> <!----></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/front-end-campus/assets/js/app.040c43e1.js" defer></script><script src="/front-end-campus/assets/js/8.a2f9fc6b.js" defer></script><script src="/front-end-campus/assets/js/3.41215964.js" defer></script><script src="/front-end-campus/assets/js/20.67fb7580.js" defer></script>
+  </body>
+</html>
