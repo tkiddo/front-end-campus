@@ -4,7 +4,7 @@ date: 2020-12-14
 tags:
   - JS
   - React
-author: tkiddo
+author: 唐凯强
 ---
 
 # useEffect Hook 是怎么工作的
@@ -264,4 +264,4 @@ export default App;
 
 我们将 classId 作为 useEffect 的依赖，当 classId 变化时，就会重新请求数据。
 
-就写这么多了，更多文章，参见 github:[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
+就写这么多了，更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)

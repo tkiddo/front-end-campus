@@ -4,7 +4,7 @@ date: 2021-01-03
 tags:
   - JS
   - React
-author: tkiddo
+author: 唐凯强
 ---
 
 # react 中的受控组件和非受控组件

@@ -4,7 +4,7 @@ date: 2020-12-14
 tags:
   - JS
   - React
-author: tkiddo
+author: 唐凯强
 ---
 
 # React Hooks 初探
@@ -182,4 +182,4 @@ export default Students;
 
 下一节继续探讨常用的 Hooks
 
-更多文章，参见 github：[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
+更多文章，参见 github：[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)

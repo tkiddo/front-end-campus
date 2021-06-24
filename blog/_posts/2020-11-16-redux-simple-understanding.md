@@ -4,7 +4,7 @@ date: 2020-11-16
 tags:
   - JS
   - Redux
-author: tkiddo
+author: 唐凯强
 ---
 
 # redux 可以这么理解
@@ -173,4 +173,4 @@ export default class Count extends React.Component {
 
 当然，redux 比这复杂得多，这里仅用一个小例子来说明一下我的理解，望各位看官批评指正。
 
-更多文章，参见 github:[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
+更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)

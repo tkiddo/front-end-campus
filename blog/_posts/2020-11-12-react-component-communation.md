@@ -4,7 +4,7 @@ date: 2020-11-12
 tags:
   - JS
   - React
-author: tkiddo
+author: 唐凯强
 ---
 
 # react 组件间通信方式

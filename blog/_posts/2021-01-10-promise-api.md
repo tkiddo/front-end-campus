@@ -4,12 +4,12 @@ date: 2021-01-10
 tags:
   - JS
   - Promise
-author: tkiddo
+author: 唐凯强
 ---
 
 # Promise API
 
-在之前的文章[手写系列：Promise 实现](https://github.com/tkiddo/front-end-interview/blob/main/docs/promise.md)中，我们了解了 Promise 是什么以及实现原理。
+在之前的文章[手写系列：Promise 实现](https://github.com/唐凯强/front-end-interview/blob/main/docs/promise.md)中，我们了解了 Promise 是什么以及实现原理。
 
 今天，我们来整理以下 Promise 的 API
 
@@ -197,4 +197,4 @@ Promise.race([promiseA, promiseB])
 
 - 多个异步并行，最终结果根据第一个成功的 promise 而定，使用`Promise.any()`
 
-更多文章，参见 github：[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
+更多文章，参见 github：[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)

@@ -5,7 +5,7 @@ tags:
   - JS
   - TS
   - React
-author: tkiddo
+author: 唐凯强
 ---
 
 # React Children 与 Typescript

@@ -3,7 +3,7 @@ title: javascript 中的数据类型有哪些？
 date: 2020-10-28
 tags:
   - JS
-author: tkiddo
+author: 唐凯强
 ---
 
 # javascript 中的数据类型有哪些？

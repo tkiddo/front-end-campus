@@ -3,7 +3,7 @@ title: 从执行上下文理解作用域链
 date: 2020-11-03
 tags:
   - JS
-author: tkiddo
+author: 唐凯强
 ---
 
 # 从执行上下文理解作用域链

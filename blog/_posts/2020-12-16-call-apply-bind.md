@@ -3,7 +3,7 @@ title: 手写 JS 系列：call，apply，bind
 date: 2020-12-16
 tags:
   - JS
-author: tkiddo
+author: 唐凯强
 ---
 
 # 手写 JS 系列：call，apply，bind
@@ -125,4 +125,4 @@ Function.prototype.myBind = function() {
 };
 ```
 
-更多文章，参见 github:[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
+更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)

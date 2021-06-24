@@ -4,7 +4,7 @@ date: 2020-11-04
 tags:
   - JS
   - prototype
-author: tkiddo
+author: 唐凯强
 ---
 
 # 理解 JavaScript 中的原型和继承
@@ -301,4 +301,4 @@ const hero2 = new Healer('Kanin', 1, 'cure');
 
 JavaScript 是一种基于原型的语言，其功能与许多其他面向对象的语言所使用的传统的基于类的范例不同。
 
-更多文章，参见 github:[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
+更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)

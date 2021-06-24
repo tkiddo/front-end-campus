@@ -3,7 +3,7 @@ title: 从输入 URL 到网页展示，之间发生了什么？
 date: 2021-01-31
 tags:
   - Web
-author: tkiddo
+author: 唐凯强
 ---
 
 # 从输入 URL 到网页展示，之间发生了什么？
@@ -218,4 +218,4 @@ CSS 阻塞渲染意味着，在 CSSOM 完备前，页面将一直处理白屏状
 
 这就是从 URL 输入到页面展示整个过程所经历的事情，包含 DNS 解析，建立 TCP 连接，发送 HTTP 请求，浏览器得到 HTTP 响应，解析并渲染，最后断开连接。
 
-更多文章，参见 github:[tkiddo/front-end-interview](https://github.com/tkiddo/front-end-interview)
+更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
