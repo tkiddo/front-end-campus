@@ -136,7 +136,7 @@ http 响应状态码分为 5 段
 
 当接收到页面资源后，浏览器就开始解析收到的信息。
 
-![render](../images/url-to-page/render.webp)
+![render](../images/url-to-page/render.png)
 
 解析过程可以分为以下步骤：
 

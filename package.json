@@ -1,10 +1,10 @@
 {
   "name": "front-end-campus",
   "version": "1.0.0",
-  "description": "<!--  * @Author: tkiddo  * @Date: 2020-11-02 08:43:42  * @LastEditors: tkiddo  * @LastEditTime: 2021-02-20 10:35:31  * @Description: -->",
+  "description": "front end",
   "main": "index.js",
   "directories": {
-    "doc": "docs"
+    "doc": "blog"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/tkiddo/front-end-campus.git"
   },
-  "keywords": [],
+  "keywords": [
+    "front-end"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
