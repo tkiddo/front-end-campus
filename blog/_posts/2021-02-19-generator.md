@@ -265,4 +265,4 @@ console.log(...take(10, numbers)); // This will not give any data
 
 2. 生成器对象中的值不能像数组一样随机访问，因为是一个一个生成的，必须按顺序访问
 
-更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
+

@@ -204,4 +204,4 @@ ES6 新增了`let`和`const`声明，引入了块级作用域来更好地控制�
 
 最佳实践：默认使用`const`,只有在确实需要改变变量的值时用`let`
 
-更多文章，参见 github：[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
+

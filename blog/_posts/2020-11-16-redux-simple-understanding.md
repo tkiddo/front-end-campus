@@ -173,4 +173,4 @@ export default class Count extends React.Component {
 
 当然，redux 比这复杂得多，这里仅用一个小例子来说明一下我的理解，望各位看官批评指正。
 
-更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
+

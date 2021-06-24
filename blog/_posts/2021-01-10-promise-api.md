@@ -197,4 +197,3 @@ Promise.race([promiseA, promiseB])
 
 - 多个异步并行，最终结果根据第一个成功的 promise 而定，使用`Promise.any()`
 
-更多文章，参见 github：[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)

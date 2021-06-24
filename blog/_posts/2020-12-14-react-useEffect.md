@@ -264,4 +264,4 @@ export default App;
 
 我们将 classId 作为 useEffect 的依赖，当 classId 变化时，就会重新请求数据。
 
-就写这么多了，更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
+

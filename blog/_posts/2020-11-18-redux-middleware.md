@@ -214,4 +214,4 @@ const patchTimeStamp = (store) => (next) => (action) => {
 
 这就是我们常见的中间件 middleware 本尊了。
 
-更多文章，参见 github:[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
+

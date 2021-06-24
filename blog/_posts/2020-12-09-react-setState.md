@@ -214,4 +214,4 @@ handleAdd = () => {
 - 如果要使用更新之后的状态，给`setState()`传一个回调函数
 - 如果新的状态要依赖之前的状态，给`setState()`
 
-更多文章，参见 github：[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
+

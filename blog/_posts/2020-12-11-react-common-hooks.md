@@ -192,4 +192,4 @@ Hook 本质上是一组按顺序执行的函数，任何会破坏顺序的操作
 
 Hook 就是为函数而生的嘛。
 
-更多文章，参见 github：[唐凯强/front-end-interview](https://github.com/唐凯强/front-end-interview)
+
