@@ -6,8 +6,6 @@ tags:
   - http
 ---
 
-## axios 简介
-
 基于 Promise 的 HTTP 客户端，用于浏览器和 node.js
 
 - 支持浏览器端 ajax 请求

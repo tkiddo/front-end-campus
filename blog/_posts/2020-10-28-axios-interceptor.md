@@ -6,8 +6,6 @@ tags:
   - http
 ---
 
-## axios 拦截器
-
 在`Axios.js`中，构造函数是这样的：
 
 ```js

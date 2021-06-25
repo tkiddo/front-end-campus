@@ -6,8 +6,6 @@ tags:
   - Redux
 ---
 
-# 搞懂 redux middleware 中间件
-
 接着上文[redux 可以这么理解](https://github.com/唐凯强/front-end-interview/blob/main/docs/redux-simple-understanding.md),今天来理解 middleware 中间件。
 
 ## 什么是中间件

@@ -5,8 +5,6 @@ tags:
   - JS
 ---
 
-# 从执行上下文理解作用域链
-
 参考自[ECMA-262-3 in detail. Chapter 4. Scope chain.](http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/#:~:text=Scope%20chain%20is%20related%20with%20an%20execution%20context,the%20internal%20%5B%20%5BScope%5D%5D%20property%20of%20this%20function.)
 
 ## 定义
