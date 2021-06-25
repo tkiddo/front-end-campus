@@ -4,10 +4,7 @@ date: 2020-11-16
 tags:
   - JS
   - Redux
-author: 唐凯强
----
-
-# redux 可以这么理解
+---# redux 可以这么理解
 
 经常会被问到‘redux 是什么’，‘如何去理解 redux’等类似的问题。我想最佳的答案，应该就是按照 redux 的核心概念和原则去实现一个简易的状态管理方案。这里就以一个简单的计数器为例，组成很简单，一个展示区和两个按钮，分别是加和减：
 
@@ -172,5 +169,3 @@ export default class Count extends React.Component {
 ```
 
 当然，redux 比这复杂得多，这里仅用一个小例子来说明一下我的理解，望各位看官批评指正。
-
-

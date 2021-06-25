@@ -4,10 +4,7 @@ date: 2021-02-19
 tags:
   - JS
   - ES6
-author: 唐凯强
----
-
-# 理解 ES6 的生成器
+---# 理解 ES6 的生成器
 
 ES6 引入了生成器（或者说生成器函数）。生成器的功能就是可以中断函数执行，并从停止的位置继续执行。简单地说，生成器是一个函数，但是用起来像迭代器。生成器与迭代器的关系非常密切，如果你还不是很了解迭代器，那么[迭代器入门](https://github.com/唐凯强/front-end-interview/blob/main/docs/iterable.md)这篇文章可以帮你更好地理解迭代器。
 
@@ -264,5 +261,3 @@ console.log(...take(10, numbers)); // This will not give any data
 ```
 
 2. 生成器对象中的值不能像数组一样随机访问，因为是一个一个生成的，必须按顺序访问
-
-

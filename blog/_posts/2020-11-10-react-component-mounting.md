@@ -4,10 +4,7 @@ date: 2020-11-10
 tags:
   - JS
   - React
-author: 唐凯强
----
-
-# react 组件如何挂载
+---# react 组件如何挂载
 
 在 react 中，我们将组件渲染并生成 DOM 元素并塞入到页面中的过程称为组件的挂载。
 

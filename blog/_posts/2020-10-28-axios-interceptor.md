@@ -4,10 +4,7 @@ date: 2020-10-28
 tags:
   - JS
   - http
-author: 唐凯强
----
-
-## axios 拦截器
+---## axios 拦截器
 
 在`Axios.js`中，构造函数是这样的：
 

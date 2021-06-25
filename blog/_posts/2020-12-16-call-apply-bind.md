@@ -3,10 +3,7 @@ title: 手写 JS 系列：call，apply，bind
 date: 2020-12-16
 tags:
   - JS
-author: 唐凯强
----
-
-# 手写 JS 系列：call，apply，bind
+---# 手写 JS 系列：call，apply，bind
 
 我们知道，this 指向函数的直接调用者或者使用 new 操作符创建的对象，那么，call，apply，bind 解决了什么问题呢？
 
@@ -124,5 +121,3 @@ Function.prototype.myBind = function() {
   };
 };
 ```
-
-

@@ -4,10 +4,7 @@ date: 2020-12-29
 tags:
   - JS
   - React
-author: 唐凯强
----
-
-# react 中的错误捕获
+---# react 中的错误捕获
 
 我们先来看个例子，现在有一个组件：
 
@@ -167,5 +164,3 @@ window.addEventListener('unhandledrejection', (event) => {
 - 自身错误
 
 将边界组件和业务组件分离，各司其职，不能在边界组件中处理逻辑代码，也不能在业务组件中使用 didcatch
-
-

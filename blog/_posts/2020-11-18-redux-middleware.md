@@ -4,10 +4,7 @@ date: 2020-11-18
 tags:
   - JS
   - Redux
-author: 唐凯强
----
-
-# 搞懂 redux middleware 中间件
+---# 搞懂 redux middleware 中间件
 
 接着上文[redux 可以这么理解](https://github.com/唐凯强/front-end-interview/blob/main/docs/redux-simple-understanding.md),今天来理解 middleware 中间件。
 
@@ -213,5 +210,3 @@ const patchTimeStamp = (store) => (next) => (action) => {
 ```
 
 这就是我们常见的中间件 middleware 本尊了。
-
-
