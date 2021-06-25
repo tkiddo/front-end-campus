@@ -3,7 +3,9 @@ title: javascript 中的数据类型有哪些？
 date: 2020-10-28
 tags:
   - JS
----# javascript 中的数据类型有哪些？
+---
+
+# javascript 中的数据类型有哪些？
 
 在 ES5 以及更早的版本中，JS 数据类型包括 6 种：Number，String，Boolean，Null，Undefined，Object。
 

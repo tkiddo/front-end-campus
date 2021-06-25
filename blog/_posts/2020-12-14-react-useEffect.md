@@ -4,7 +4,9 @@ date: 2020-12-14
 tags:
   - JS
   - React
----# useEffect Hook 是怎么工作的
+---
+
+# useEffect Hook 是怎么工作的
 
 useEffect Hook 在 react 项目开发时使用场景非常多，比如在组件挂载完成时请求数据，又比如在状态更新时执行额外的操作。如果我们理解了 useEffect 的工作原理，就能很好地使用它来完成这些功能。本文试图从实际例子中来体会 useEffect 的工作原理
 

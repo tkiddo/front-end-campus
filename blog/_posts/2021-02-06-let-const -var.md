@@ -4,7 +4,9 @@ date: 2021-02-06
 tags:
   - JS
   - ES6
----# ES6: let const 和 var
+---
+
+# ES6: let const 和 var
 
 在 ES6 之前，声明变量用的关键字只有`var`，ES6 新增加了`let`和`const`这两个关键字来声明变量。
 
