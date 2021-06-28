@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>TS Tag | 唐凯强的网络博客</title>
+    <title>Node Tag | 唐凯强的网络博客</title>
     <meta name="generator" content="VuePress 1.8.2">
     
     <meta name="description" content="">
@@ -12,21 +12,21 @@
     <link rel="stylesheet" href="/front-end-campus/assets/css/0.styles.80bf0f19.css">
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/front-end-campus/" class="nav-link home-link">唐凯强的网络博客 </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/front-end-campus/" class="nav-link">博客</a></li><li class="nav-item"><a href="/front-end-campus/tag/" class="nav-link router-link-active">标签</a></li><li class="nav-item"><a href="https://github.com/tkiddo/front-end-campus" target="_blank" rel="noopener noreferrer" class="nav-link external">Github</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/front-end-campus/" class="nav-link mobile-home-link">唐凯强的网络博客 </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/front-end-campus/" class="nav-link">博客</a></li><li class="mobile-nav-item"><a href="/front-end-campus/tag/" class="nav-link router-link-active">标签</a></li><li class="mobile-nav-item"><a href="https://github.com/tkiddo/front-end-campus" target="_blank" rel="noopener noreferrer" class="nav-link external">Github</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div><div id="base-list-layout"><div itemscope="itemscope" itemtype="http://schema.org/Blog" class="ui-posts"><article itemprop="blogPost" itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="ui-post"><meta itemprop="mainEntityOfPage" content="/2021/01/04/react-children-ts/"> <header itemprop="name headline" class="ui-post-title"><a href="/front-end-campus/2021/01/04/react-children-ts/" class="nav-link">React Children 与 Typescript</a></header> <p itemprop="description" class="ui-post-summary">
-        React 中的children属性是创建可重用组件的关键，因为它支持组件间的相互组合。本文就讨论几种在 typescript 中定义children属性类型的情况
-使用FC类型
-FC 类型是一个标准的 React 类型，我们可以在箭头函数组件中使用。FC代表Function Component。
-来看例子：
-`ts
-type Props ...
-      </p> <footer><!----> <div class="ui-post-meta ui-post-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2021-01-04T00:00:00.000Z">
-            Mon Jan 04 2021
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/front-end-campus/" class="nav-link home-link">唐凯强的网络博客 </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/front-end-campus/" class="nav-link">博客</a></li><li class="nav-item"><a href="/front-end-campus/tag/" class="nav-link router-link-active">标签</a></li><li class="nav-item"><a href="https://github.com/tkiddo/front-end-campus" target="_blank" rel="noopener noreferrer" class="nav-link external">Github</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/front-end-campus/" class="nav-link mobile-home-link">唐凯强的网络博客 </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/front-end-campus/" class="nav-link">博客</a></li><li class="mobile-nav-item"><a href="/front-end-campus/tag/" class="nav-link router-link-active">标签</a></li><li class="mobile-nav-item"><a href="https://github.com/tkiddo/front-end-campus" target="_blank" rel="noopener noreferrer" class="nav-link external">Github</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div><div id="base-list-layout"><div itemscope="itemscope" itemtype="http://schema.org/Blog" class="ui-posts"><article itemprop="blogPost" itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="ui-post"><meta itemprop="mainEntityOfPage" content="/2021/06/28/simple-eventemitter/"> <header itemprop="name headline" class="ui-post-title"><a href="/front-end-campus/2021/06/28/simple-eventemitter/" class="nav-link">实现 EventEmitter</a></header> <p itemprop="description" class="ui-post-summary">
+        对于事件，我们并不陌生。比如，在浏览器中，监听按钮点击事件，以便在用户点击时触发处理函数。
+
+const button = document.querySelector('#button');
+button.addEventListener('click', function() {
+  console.log('clicked');
+});
+
+而在 node 环境中，很多 A ...
+      </p> <footer><!----> <div class="ui-post-meta ui-post-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2021-06-28T00:00:00.000Z">
+            Mon Jun 28 2021
           </time></div> <div itemprop="keywords" class="ui-post-meta ui-post-tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg> <a href="/front-end-campus/tag/JS">
             JS
-          </a><a href="/front-end-campus/tag/TS" aria-current="page" class="router-link-exact-active router-link-active">
-            TS
-          </a><a href="/front-end-campus/tag/React">
-            React
+          </a><a href="/front-end-campus/tag/Node" aria-current="page" class="router-link-exact-active router-link-active">
+            Node
           </a></div></footer></article></div> <!----></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8></ul></div></footer></div><div class="global-ui"></div></div>
     <script src="/front-end-campus/assets/js/app.0f5b2b67.js" defer></script><script src="/front-end-campus/assets/js/8.a2f9fc6b.js" defer></script><script src="/front-end-campus/assets/js/19.08f4341d.js" defer></script><script src="/front-end-campus/assets/js/4.57989c11.js" defer></script>
   </body>
