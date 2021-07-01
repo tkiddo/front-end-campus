@@ -1,8 +1,9 @@
 ---
 title: 详解 Content-Type 值 application/x-www-form-urlencoded ，application/json 和 multipart/form-data 的区别
-date: 2021-06-30
+date: 2021-07-01
 tags:
-  - http
+  - HTTP
+  - Content-Type
 ---
 
 在前后端分离的开发实践中，经常会碰到前端明明传了参数，但是后端告诉你取不到参数，这时候你就需要关注一下`Content-Type`这个请求头了。
@@ -24,3 +25,27 @@ HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规
 优点：兼容性好，所有浏览器都支持
 
 缺点：在数据结构及其复杂时，服务端数据解析变得很难
+
+## `application/json`
+
+在传递较为复杂结构的数据时，`application/json`就比较适合。它告诉服务器请求的主体内容是 json 格式的字符串，服务器端会对 json 字符串进行解析，json 格式要支持比键值对复杂得多的结构化数据。这种方式的好处就是前端人员不需要关心数据结构的复杂度，只需要标准的 json 格式就能提交成功。
+
+![在开发者工具上查看](../images/content-type/json.png)
+
+随着 json 规范的越来越流行，并且对浏览器支持程度原来越好，`application/json`也越来越受欢迎。
+
+## `multipart/form-data`
+
+除了以上两种方式，还有`multipart/form-data`，这种方式主要用于文件上传，将文件转化成二进制数据进行传输
+
+![在开发者工具上查看](../images/content-type/form-data1.png)
+
+点击 view source
+
+![在开发者工具上查看](../images/content-type/form-data2.png)
+
+## 小结
+
+默认情况下，POST 请求以`application/x-www-form-urlencoded`编码方式传输数据，当数据结构较为复杂时，`application/json`方式更适合，而`multipart/form-data`一般适用于文件上传。
+
+具体使用哪种编码方式，最好与后端开发沟通之后决定

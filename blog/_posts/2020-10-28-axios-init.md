@@ -3,7 +3,7 @@ title: axios 简介
 date: 2020-10-28
 tags:
   - JS
-  - http
+  - HTTP
 ---
 
 ## axios 简介
