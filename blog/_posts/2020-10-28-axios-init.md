@@ -3,7 +3,7 @@ title: axios 简介
 date: 2020-10-28
 tags:
   - JS
-  - http
+  - HTTP
 ---
 
 基于 Promise 的 HTTP 客户端，用于浏览器和 node.js
