@@ -9,5 +9,3 @@
 - content-type application/json 和 application/x-www-form-urlencoded 区别
 
 - apidocs 实践
-
-提交版本一
