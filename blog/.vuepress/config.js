@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         text: '收藏',
-        link: 'https://tkiddo.github.io/front-end-campus/projects/'
+        link: '/2020/10/19/projects/'
       },
       {
         text: 'Github',
