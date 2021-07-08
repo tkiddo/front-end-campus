@@ -15,6 +15,10 @@ module.exports = {
         link: '/tag/'
       },
       {
+        text: '收藏',
+        link: 'https://tkiddo.github.io/front-end-campus/projects/'
+      },
+      {
         text: 'Github',
         link: 'https://github.com/tkiddo/front-end-campus'
       }
