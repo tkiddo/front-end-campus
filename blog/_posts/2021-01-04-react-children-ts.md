@@ -7,7 +7,6 @@ tags:
   - React
 ---
 
-# React Children 与 Typescript
 
 React 中的`children`属性是创建可重用组件的关键，因为它支持组件间的相互组合。本文就讨论几种在 typescript 中定义`children`属性类型的情况
 

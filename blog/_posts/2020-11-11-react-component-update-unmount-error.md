@@ -6,8 +6,6 @@ tags:
   - React
 ---
 
-# react 组件更新
-
 上一节讲到组件渲染并生成 dom 然后塞入页面的过程为组件的挂载，当组件的`props`或者`state`改变时，会触发组件的更新。在更新阶段，会依次调用以下方法:
 
 1. `static getDerivedStateFromProps()`：和挂载阶段一样，用的场景不多

@@ -6,8 +6,6 @@ tags:
   - prototype
 ---
 
-# 理解 JavaScript 中的原型和继承
-
 翻译自[Understanding Prototypes and Inheritance in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-prototypes-and-inheritance-in-javascript#:~:text=JavaScript%20is%20a%20prototype-based%20language%2C%20meaning%20object%20properties,languages%2C%20JavaScript%20is%20relatively%20unique%2C%20as%20other%20)
 
 ### 引言

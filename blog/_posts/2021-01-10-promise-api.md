@@ -6,7 +6,7 @@ tags:
   - Promise
 ---
 
-# Promise API
+
 
 在之前的文章[手写系列：Promise 实现](https://github.com/唐凯强/front-end-interview/blob/main/docs/promise.md)中，我们了解了 Promise 是什么以及实现原理。
 

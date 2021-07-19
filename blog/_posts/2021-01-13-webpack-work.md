@@ -5,7 +5,6 @@ tags:
   - Webpack
 ---
 
-# webpack 打包原理初探
 
 webpack 是当前非常流行的前端打包工具，因而面试中会经常被问到 webpack 打包原理的问题。
 
