@@ -1,6 +1,6 @@
 # Front-End-Campus
 
-[传送门](https://tkiddo.github.io/front-end-campus)
+[传送门](https://tkiddo-8gkkh0chf3632274-1256164626.tcloudbaseapp.com/)
 
 ## 更多
 
