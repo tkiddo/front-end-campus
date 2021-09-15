@@ -2,7 +2,7 @@ name: Document Pages deploy
 
 on:
   push:
-    branches: [main]
+    branches: [tecent]
 
 jobs:
   build:
