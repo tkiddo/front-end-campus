@@ -24,5 +24,5 @@ module.exports = {
       }
     ]
   },
-  base: '/'
+  base: '/front-end-campus/'
 };
